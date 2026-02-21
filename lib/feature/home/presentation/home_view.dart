@@ -17,7 +17,7 @@ class HomeView extends StatelessWidget {
                 'Dark Mode',
                 style: TextStyle(
                   fontSize: 30,
-                  fontWeight: FontWeight.bold,
+                  fontWeight: FontWeight.w800,
                 ),
               ),
               value: cubit.isDark,

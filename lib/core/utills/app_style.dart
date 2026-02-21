@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:marketa/core/utills/app_color.dart';
 
 class AppStyle {
@@ -10,5 +11,9 @@ class AppStyle {
     scaffoldBackgroundColor:
     isDark ? AppColor.darkScaffoldBackground : AppColor.lightScaffoldBackground,
     brightness: isDark ? Brightness.dark : Brightness.light,
+    appBarTheme: const AppBarTheme(
+      elevation: 0.0,
+      systemOverlayStyle: SystemUiOverlayStyle.light,
+    ),
   );
 }

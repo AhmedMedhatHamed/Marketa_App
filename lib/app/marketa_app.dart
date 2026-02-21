@@ -1,0 +1,25 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:marketa/core/cubit/app_cubit.dart';
+import 'package:marketa/core/router/app_router.dart';
+import 'package:marketa/core/utills/app_consts.dart';
+import 'package:marketa/core/utills/app_style.dart';
+
+class MarketaApp extends StatelessWidget {
+  const MarketaApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<AppCubit, AppState>(
+      builder: (context, state) {
+        final cubit = context.read<AppCubit>();
+        return MaterialApp.router(
+          debugShowCheckedModeBanner: false,
+          title: AppConsts.appName,
+          theme: AppStyle(cubit.isDark).themeData,
+          routerConfig: router,
+        );
+      },
+    );
+  }
+}
