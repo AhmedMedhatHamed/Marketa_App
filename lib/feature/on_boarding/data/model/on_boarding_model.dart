@@ -13,17 +13,17 @@ class OnBoardingModel {
 List<OnBoardingModel> onBoardingList = [
   OnBoardingModel(
       image: AppImages.onBoarding1,
-      title: 'title',
-      subTitle: 'subTitle',
+      title: 'Purchase Online !!',
+      subTitle: 'Using our app’s history libraries\nyou can find many historical periods ',
   ),
   OnBoardingModel(
     image: AppImages.onBoarding2,
-    title: 'title',
-    subTitle: 'subTitle',
+    title: 'Track order !!',
+    subTitle: 'A big variety of ancient places\nfrom all over the world',
   ),
   OnBoardingModel(
     image: AppImages.onBoarding3,
-    title: 'title',
-    subTitle: 'subTitle',
+    title: 'Get your order !!',
+    subTitle: 'AI provide recommendations and helps\nyou to continue the search journey',
   ),
 ];

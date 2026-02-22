@@ -11,19 +11,30 @@ abstract class CustomTextStyles{
   static final poppins500styles24 = TextStyle(
     fontSize: 24.0,
     fontWeight: FontWeight.w500,
+    color: Colors.white,
+    fontFamily: 'Poppins',
+  );
+  static final poppins500styles24Black = TextStyle(
+    fontSize: 24.0,
+    fontWeight: FontWeight.w500,
     color: Colors.black,
     fontFamily: 'Poppins',
   );
-  static final poppins600styles12 = TextStyle(
-    fontSize: 12.0,
-    fontWeight: FontWeight.w600,
-    color: Color(0xff6F6460),
+  static final poppinsBoldStyles26 = TextStyle(
+    fontSize: 26.0,
+    fontWeight: FontWeight.bold,
+    color: Colors.white,
+    fontFamily: 'Poppins',
+  );
+  static final poppinsStyles14 = TextStyle(
+    fontSize: 14.0,
+    color: Colors.white,
     fontFamily: 'Poppins',
   );
   static final poppins300styles16 = TextStyle(
     fontSize: 16.0,
     fontWeight: FontWeight.w300,
-    color: Colors.black,
+    color: Colors.grey,
     fontFamily: 'Poppins',
   );
 }

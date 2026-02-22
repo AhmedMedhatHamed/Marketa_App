@@ -2,54 +2,54 @@ import 'package:flutter/material.dart';
 import 'package:marketa/core/utills/text_styles.dart';
 import 'package:marketa/feature/on_boarding/data/model/on_boarding_model.dart';
 
+import 'custom_smooth_indicator.dart';
+
 class OnBoardingWidget extends StatelessWidget {
   const OnBoardingWidget({
     super.key,
-    required this.image,
-    required this.title,
-    required this.subTitle,
+    required this.controller,
+    required this.onPageChanged,
   });
-  final String image, title, subTitle;
+
+  final PageController controller;
+  final void Function(int) onPageChanged;
+
   @override
   Widget build(BuildContext context) {
     return Expanded(
       child: PageView.builder(
-        //onPageChanged: onPageChanged,
-        //controller: controller,
+        onPageChanged: onPageChanged,
+        controller: controller,
         itemCount: onBoardingList.length,
         physics: const BouncingScrollPhysics(),
         itemBuilder: (context, index) {
-          return Column(
-            children: [
-              Container(
-                height: 290.0,
-                width: 343.0,
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                    image: AssetImage(onBoardingList[index].image),
-                    fit: BoxFit.fill,
-                  ),
+          return Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20.0),
+            child: Column(
+              children: [
+                Image.asset(
+                  height: 250.0,
+                  width: 300.0,
+                  onBoardingList[index].image,
+                  fit: BoxFit.contain,
                 ),
-              ),
-              const SizedBox(height: 24.0),
-             // CustomSmoothIndicator(controller: controller),
-              const SizedBox(height: 32.0),
-              Text(
-                onBoardingList[index].title,
-                style: CustomTextStyles.poppins500styles24,
-                textAlign: TextAlign.center,
-                overflow: TextOverflow.ellipsis,
-                maxLines: 2,
-              ),
-              const SizedBox(height: 16.0),
-              Text(
-                onBoardingList[index].subTitle,
-                style: CustomTextStyles.poppins300styles16,
-                textAlign: TextAlign.center,
-                overflow: TextOverflow.ellipsis,
-                maxLines: 2,
-              ),
-            ],
+                const SizedBox(height: 8.0),
+                CustomSmoothIndicator(controller: controller),
+                const SizedBox(height: 16.0),
+                Text(
+                  onBoardingList[index].title,
+                  style: CustomTextStyles.poppins500styles24Black,
+                  textAlign: TextAlign.center,
+                  maxLines: 2,
+                ),
+                Text(
+                  onBoardingList[index].subTitle,
+                  style: CustomTextStyles.poppins300styles16,
+                  textAlign: TextAlign.center,
+                  maxLines: 2,
+                ),
+              ],
+            ),
           );
         },
       ),
