@@ -1,6 +1,8 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:marketa/feature/auth/presenatation/views/forget_password_view.dart';
 import 'package:marketa/feature/auth/presenatation/views/login_view.dart';
+import 'package:marketa/feature/auth/presenatation/views/sign_up_view.dart';
 import 'package:marketa/feature/home/presentation/home_view.dart';
 import 'package:marketa/feature/on_boarding/presentation/cubit/on_boarding_cubit.dart';
 import 'package:marketa/feature/on_boarding/presentation/views/on_boarding_view.dart';
@@ -26,6 +28,18 @@ final GoRouter router = GoRouter(
       builder:
           (context, state)
       => const LoginView(),
+    ),
+    GoRoute(
+      path: '/signUp',
+      builder:
+          (context, state)
+      => const SignUpView(),
+    ),
+    GoRoute(
+      path: '/forgetPassword',
+      builder:
+          (context, state)
+      => const ForgetPasswordView(),
     ),
     GoRoute(
       path: '/onBoarding',

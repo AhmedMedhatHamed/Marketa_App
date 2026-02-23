@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:marketa/core/utills/app_images.dart';
 import 'package:marketa/core/utills/app_strings.dart';
 import 'package:marketa/core/utills/text_styles.dart';
 import 'package:marketa/feature/on_boarding/presentation/widgets/custom_header_clipper.dart';
 
-class CustomOnboardingHeader extends StatelessWidget {
-  const CustomOnboardingHeader({super.key});
+class CustomHeader extends StatelessWidget {
+  const CustomHeader({super.key, required this.pageName});
 
+  final String pageName;
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -15,7 +15,7 @@ class CustomOnboardingHeader extends StatelessWidget {
         ClipPath(
           clipper: CustomHeaderClipper(),
           child: Container(
-            height: 350.0,
+            height: 320.0,
             width: double.infinity,
             decoration: const BoxDecoration(
               gradient: LinearGradient(
@@ -26,19 +26,6 @@ class CustomOnboardingHeader extends StatelessWidget {
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
               ),
-            ),
-          ),
-        ),
-        Positioned(
-          top: 50.0,
-          right: 24.0,
-          child: InkWell(
-            onTap: (){
-              context.go('/loginView');
-            },
-            child: Text(
-              AppStrings.skip,
-              style: CustomTextStyles.poppinsStyles14.copyWith(fontSize: 18.0,),
             ),
           ),
         ),
@@ -60,8 +47,11 @@ class CustomOnboardingHeader extends StatelessWidget {
               ),
               SizedBox(height: 8.0),
               Text(
-                  AppStrings.appDescription,
-                  style: CustomTextStyles.poppinsStyles14
+                  pageName,
+                  style: CustomTextStyles.poppinsBoldStyles26.copyWith(
+                    fontSize: 22.0,
+                    fontStyle: FontStyle.italic,
+                  ),
               ),
             ],
           ),

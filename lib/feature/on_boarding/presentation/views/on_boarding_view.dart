@@ -19,20 +19,22 @@ class OnBoardingView extends StatelessWidget {
           BlocBuilder<OnBoardingCubit, OnBoardingState>(
             builder: (context, state) {
               final cubit = context.read<OnBoardingCubit>();
-              final isLastPage =
-                  cubit.currentIndex == onBoardingList.length - 1;
-              return CustomButton(
-                text: isLastPage ? 'Login Now' : 'Next',
-                onPressed: () {
-                  if (isLastPage) {
-                    context.go('/loginView');
-                  } else {
-                    cubit.controller.nextPage(
-                      duration: const Duration(milliseconds: 300),
-                      curve: Curves.easeIn,
-                    );
-                  }
-                },
+              final isLastPage = cubit.currentIndex == onBoardingList.length - 1;
+              return Padding(
+                padding: const EdgeInsets.only(right: 20.0,left: 20.0,bottom: 10.0,),
+                child: CustomButton(
+                  text: isLastPage ? 'Login Now' : 'Next',
+                  onPressed: () {
+                    if (isLastPage) {
+                      context.go('/loginView');
+                    } else {
+                      cubit.controller.nextPage(
+                        duration: const Duration(milliseconds: 300),
+                        curve: Curves.easeIn,
+                      );
+                    }
+                  },
+                ),
               );
             },
           ),
