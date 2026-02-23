@@ -8,9 +8,9 @@ abstract class CustomTextStyles{
     color: AppColor.primaryColor,
     fontFamily: 'Archivo',
   );
-  static final poppins500styles24 = TextStyle(
-    fontSize: 24.0,
-    fontWeight: FontWeight.w500,
+  static final poppins400styles20 = TextStyle(
+    fontSize: 20.0,
+    fontWeight: FontWeight.w400,
     color: Colors.white,
     fontFamily: 'Poppins',
   );

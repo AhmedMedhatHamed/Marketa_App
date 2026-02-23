@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:marketa/core/cubit/app_cubit.dart';
 import 'package:marketa/core/router/app_router.dart';
-import 'package:marketa/core/utills/app_consts.dart';
+import 'package:marketa/core/utills/app_strings.dart';
 import 'package:marketa/core/utills/app_style.dart';
 
 class MarketaApp extends StatelessWidget {
@@ -15,7 +15,7 @@ class MarketaApp extends StatelessWidget {
         final cubit = context.read<AppCubit>();
         return MaterialApp.router(
           debugShowCheckedModeBanner: false,
-          title: AppConsts.appName,
+          title: AppStrings.appName,
           theme: AppStyle(cubit.isDark).themeData,
           routerConfig: router,
         );

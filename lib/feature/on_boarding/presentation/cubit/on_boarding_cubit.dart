@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
 part 'on_boarding_state.dart';
 
 class OnBoardingCubit extends Cubit<OnBoardingState> {
@@ -8,5 +9,8 @@ class OnBoardingCubit extends Cubit<OnBoardingState> {
   final PageController controller = PageController();
   int currentIndex = 0;
 
-
+  void changeIndex(int index) {
+    currentIndex = index;
+    emit(OnBoardingPageChanged());
+  }
 }

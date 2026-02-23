@@ -4,24 +4,39 @@ import 'package:marketa/core/utills/app_color.dart';
 import '../utills/text_styles.dart';
 
 class CustomButton extends StatelessWidget {
-  const CustomButton({super.key, this.onPressed, required this.text});
+  const CustomButton({
+    super.key,
+    this.onPressed,
+    required this.text,
+    this.height,
+    this.color,
+    this.radius,
+    this.width,
+  });
 
   final void Function()? onPressed;
   final String text;
+  final double? height;
+  final double? width;
+  final Color? color;
+  final double? radius;
   @override
   Widget build(BuildContext context) {
-    return  Padding(
+    return Padding(
       padding: const EdgeInsets.only(left: 20.0, right: 20, bottom: 10.0),
-      child: ElevatedButton(
-        style: ElevatedButton.styleFrom(
-          backgroundColor: AppColor.primaryColor,
-          minimumSize: Size(double.infinity, 50.0),
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadiusGeometry.circular(8.0),
+      child: SizedBox(
+        width: width ?? double.infinity,
+        height: height ?? 50.0,
+        child: ElevatedButton(
+          style: ElevatedButton.styleFrom(
+            backgroundColor: color ??AppColor.primaryColor,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadiusGeometry.circular(radius?? 8.0),
+            ),
           ),
+          onPressed: onPressed,
+          child: Text(text, style: CustomTextStyles.poppins400styles20),
         ),
-        onPressed: onPressed,
-        child: Text(text, style: CustomTextStyles.poppins500styles24),
       ),
     );
   }

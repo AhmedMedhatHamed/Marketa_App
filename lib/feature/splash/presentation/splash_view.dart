@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:marketa/core/utills/app_consts.dart';
+import 'package:marketa/core/utills/app_strings.dart';
 import 'package:marketa/core/utills/text_styles.dart';
 
 class SplashView extends StatefulWidget {
@@ -55,7 +55,7 @@ class _SplashViewState extends State<SplashView> {
               );
             },
             child: Text(
-              AppConsts.appName,
+              AppStrings.appName,
               style: CustomTextStyles.archivo400styles64,
             ),
           ),

@@ -1,25 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:marketa/core/utills/text_styles.dart';
 import 'package:marketa/feature/on_boarding/data/model/on_boarding_model.dart';
-
+import 'package:marketa/feature/on_boarding/presentation/cubit/on_boarding_cubit.dart';
 import 'custom_smooth_indicator.dart';
 
 class OnBoardingWidget extends StatelessWidget {
   const OnBoardingWidget({
     super.key,
-    required this.controller,
-    required this.onPageChanged,
   });
-
-  final PageController controller;
-  final void Function(int) onPageChanged;
 
   @override
   Widget build(BuildContext context) {
+    final cubit = context.read<OnBoardingCubit>();
+
     return Expanded(
       child: PageView.builder(
-        onPageChanged: onPageChanged,
-        controller: controller,
+        onPageChanged: cubit.changeIndex,
+        controller: cubit.controller,
         itemCount: onBoardingList.length,
         physics: const BouncingScrollPhysics(),
         itemBuilder: (context, index) {
@@ -34,7 +32,7 @@ class OnBoardingWidget extends StatelessWidget {
                   fit: BoxFit.contain,
                 ),
                 const SizedBox(height: 8.0),
-                CustomSmoothIndicator(controller: controller),
+                CustomSmoothIndicator(controller: cubit.controller),
                 const SizedBox(height: 16.0),
                 Text(
                   onBoardingList[index].title,
