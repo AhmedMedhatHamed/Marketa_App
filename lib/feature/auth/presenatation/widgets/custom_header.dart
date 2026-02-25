@@ -5,9 +5,9 @@ import 'package:marketa/core/utills/text_styles.dart';
 import 'package:marketa/feature/on_boarding/presentation/widgets/custom_header_clipper.dart';
 
 class CustomHeader extends StatelessWidget {
-  const CustomHeader({super.key, required this.pageName});
+  const CustomHeader({super.key});
 
-  final String pageName;
+
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -15,7 +15,7 @@ class CustomHeader extends StatelessWidget {
         ClipPath(
           clipper: CustomHeaderClipper(),
           child: Container(
-            height: 320.0,
+            height: 280.0,
             width: double.infinity,
             decoration: const BoxDecoration(
               gradient: LinearGradient(
@@ -44,14 +44,6 @@ class CustomHeader extends StatelessWidget {
               Text(
                 '${AppStrings.appName} Shop',
                 style: CustomTextStyles.poppinsBoldStyles26,
-              ),
-              SizedBox(height: 8.0),
-              Text(
-                  pageName,
-                  style: CustomTextStyles.poppinsBoldStyles26.copyWith(
-                    fontSize: 22.0,
-                    fontStyle: FontStyle.italic,
-                  ),
               ),
             ],
           ),

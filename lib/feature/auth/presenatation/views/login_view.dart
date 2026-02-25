@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:marketa/core/utills/app_strings.dart';
 import 'package:marketa/feature/auth/presenatation/widgets/custom_header.dart';
 import 'package:marketa/feature/auth/presenatation/widgets/custom_login_widget.dart';
+import 'package:marketa/feature/auth/presenatation/widgets/have_account_widget.dart';
 
 class LoginView extends StatelessWidget {
   const LoginView({super.key});
@@ -15,9 +17,20 @@ class LoginView extends StatelessWidget {
       child: Scaffold(
         body: CustomScrollView(
           slivers: [
-            SliverToBoxAdapter(child: CustomHeader(pageName: AppStrings.login)),
-            SliverToBoxAdapter(child: SizedBox(height: 40.0)),
+            SliverToBoxAdapter(child: CustomHeader()),
             SliverToBoxAdapter(child: CustomLoginWidget()),
+            SliverToBoxAdapter(
+              child: SizedBox(height: 10.0,),
+            ),
+            SliverToBoxAdapter(
+              child: HaveAccountWidget(
+                onTap:  (){
+                  context.go('/signUp');
+                },
+                text1: AppStrings.haveAccount,
+                text2: AppStrings.createAccount,
+              ),
+            ),
           ],
         ),
       ),
