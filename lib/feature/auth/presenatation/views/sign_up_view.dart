@@ -23,30 +23,37 @@ class SignUpView extends StatelessWidget {
           ),
         ),
       ),
-      body: CustomScrollView(
-        slivers: [
-          SliverToBoxAdapter(child: SizedBox(height: 32.0)),
-          SliverToBoxAdapter(child: Logo()),
-          SliverToBoxAdapter(child: SizedBox(height: 10.0)),
-          SliverToBoxAdapter(
-            child: WelcomeText(
-              text1: AppStrings.appName,
-              text2: AppStrings.signUpDesc,
+      body: GestureDetector(
+        onTap: (){
+          FocusScope.of(context).unfocus();
+        },
+        child: CustomScrollView(
+          physics: BouncingScrollPhysics(),
+          slivers: [
+            SliverToBoxAdapter(child: SizedBox(height: 32.0)),
+            SliverToBoxAdapter(child: Logo()),
+            SliverToBoxAdapter(child: SizedBox(height: 10.0)),
+            SliverToBoxAdapter(
+              child: WelcomeText(
+                text1: AppStrings.appName,
+                text2: AppStrings.signUpDesc,
+              ),
             ),
-          ),
-          SliverToBoxAdapter(child: SizedBox(height: 44.0)),
-          SliverToBoxAdapter(child: CustomSignUpForm()),
-          SliverToBoxAdapter(child: SizedBox(height: 10.0)),
-          SliverToBoxAdapter(
-            child: HaveAccountWidget(
-              text1: AppStrings.alreadyHaveAccount,
-              text2: AppStrings.login,
-              onTap: () {
-                context.go('/loginView');
-              },
+            SliverToBoxAdapter(child: SizedBox(height: 44.0)),
+            SliverToBoxAdapter(child: CustomSignUpForm()),
+            SliverToBoxAdapter(child: SizedBox(height: 10.0)),
+            SliverToBoxAdapter(
+              child: HaveAccountWidget(
+                text1: AppStrings.alreadyHaveAccount,
+                text2: AppStrings.login,
+                onTap: () {
+                  context.go('/loginView');
+                },
+              ),
             ),
-          ),
-        ],
+            SliverToBoxAdapter(child: SizedBox(height: 20.0)),
+          ],
+        ),
       ),
     );
   }

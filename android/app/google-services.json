@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "482520108781",
+    "project_id": "marketa-6ad4c",
+    "storage_bucket": "marketa-6ad4c.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:482520108781:android:1b851cc3f3c04c9feb06e4",
+        "android_client_info": {
+          "package_name": "com.example.marketa"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAgoG3oN46dKlT4k2fxxOceiDr2LclmBtQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,10 +1,16 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
+import 'package:marketa/core/utills/app_color.dart';
 import 'package:marketa/core/utills/app_strings.dart';
 import 'package:marketa/core/widgets/custom_button.dart';
+import 'package:marketa/core/widgets/custom_snackbar.dart';
 import 'package:marketa/feature/auth/presenatation/cubit/auth_cubit.dart';
 import 'package:marketa/feature/auth/presenatation/widgets/custom_text_field.dart';
+import 'package:marketa/feature/auth/presenatation/widgets/terms_and_condition.dart';
+import 'custom_checkbox.dart';
+import 'custom_toast.dart';
 
 class CustomSignUpForm extends StatelessWidget {
   const CustomSignUpForm({super.key});
@@ -13,7 +19,14 @@ class CustomSignUpForm extends StatelessWidget {
   Widget build(BuildContext context) {
     AuthCubit authCubit = BlocProvider.of<AuthCubit>(context);
     return BlocConsumer<AuthCubit, AuthState>(
-      listener: (context, state) {},
+      listener: (context, state) {
+        if (state is AuthErrorState) {
+          customShowSnackBar(context, state);
+        } else if (state is AuthSuccessState) {
+          customToast('Please Verify Your Account');
+          context.go('/signIn');
+        }
+      },
       builder: (context, state) {
         return Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20.0),
@@ -73,10 +86,32 @@ class CustomSignUpForm extends StatelessWidget {
                   ),
                   labelText: 'Password',
                 ),
-                SizedBox(height: MediaQuery.of(context).size.height * 0.07),
+                Row(
+                  children: const
+                  [
+                    CustomCheckbox(),
+                    TermsAndConditions(),
+                  ],
+                ),
+                SizedBox(height: MediaQuery.of(context).size.height * 0.015),
+                state is AuthLoadingState?
+                Align(
+                  alignment: Alignment.topCenter,
+                  child: CupertinoActivityIndicator(
+                    color: AppColor.primaryColor,
+                  ),
+                ):
                 CustomButton(
+                  color: authCubit.isCheckBoxActive == false
+                      ? Colors.grey
+                      : AppColor.primaryColor,
                   onPressed: () {
-                    if (authCubit.signupFormKey.currentState!.validate()) {}
+                    if (authCubit.isCheckBoxActive == true) {
+                      if (authCubit.signupFormKey.currentState!
+                          .validate()) {
+                        authCubit.signUpWithEmailAndPassword();
+                      }
+                    }
                   },
                   text: AppStrings.signUp,
                 ),
