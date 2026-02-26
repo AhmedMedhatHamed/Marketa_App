@@ -23,25 +23,6 @@ class CustomLoginWidget extends StatelessWidget {
             key: authCubit.signInFormKey,
             child: Column(
               children: [
-                Align(
-                  alignment: Alignment.topLeft,
-                  child: Text(
-                    AppStrings.welcomeBack,
-                    style: CustomTextStyles.poppinsBoldStyles26.copyWith(
-                      fontSize: 22.0,
-                      color: Colors.black,
-                    ),
-                  ),
-                ),
-                SizedBox(height: 10.0),
-                Align(
-                  alignment: Alignment.topLeft,
-                  child: Text(
-                    AppStrings.loginDesc,
-                    style: CustomTextStyles.poppins300styles16,
-                  ),
-                ),
-                SizedBox(height: 15.0),
                 CustomTextFormField(
                   onChanged: (value){
                     authCubit.emailAddress = value;

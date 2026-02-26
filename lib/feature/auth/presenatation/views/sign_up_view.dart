@@ -1,10 +1,53 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:marketa/core/utills/app_strings.dart';
+import 'package:marketa/core/utills/text_styles.dart';
+import 'package:marketa/feature/auth/presenatation/widgets/custom_sign_up_form.dart';
+import 'package:marketa/feature/auth/presenatation/widgets/have_account_widget.dart';
+import 'package:marketa/feature/auth/presenatation/widgets/logo.dart';
+import 'package:marketa/feature/auth/presenatation/widgets/welcome_text.dart';
 
 class SignUpView extends StatelessWidget {
   const SignUpView({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold();
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        centerTitle: true,
+        title: Text(
+          AppStrings.createAccount,
+          style: CustomTextStyles.poppins500styles24Black.copyWith(
+            fontSize: 18.0,
+          ),
+        ),
+      ),
+      body: CustomScrollView(
+        slivers: [
+          SliverToBoxAdapter(child: SizedBox(height: 32.0)),
+          SliverToBoxAdapter(child: Logo()),
+          SliverToBoxAdapter(child: SizedBox(height: 10.0)),
+          SliverToBoxAdapter(
+            child: WelcomeText(
+              text1: AppStrings.appName,
+              text2: AppStrings.signUpDesc,
+            ),
+          ),
+          SliverToBoxAdapter(child: SizedBox(height: 44.0)),
+          SliverToBoxAdapter(child: CustomSignUpForm()),
+          SliverToBoxAdapter(child: SizedBox(height: 10.0)),
+          SliverToBoxAdapter(
+            child: HaveAccountWidget(
+              text1: AppStrings.alreadyHaveAccount,
+              text2: AppStrings.login,
+              onTap: () {
+                context.go('/loginView');
+              },
+            ),
+          ),
+        ],
+      ),
+    );
   }
 }

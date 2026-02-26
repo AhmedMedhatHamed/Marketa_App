@@ -8,7 +8,9 @@ abstract class AppStrings {
   static const String forgotPassword ='Forgot Password?';
   static const String welcomeBack = 'Welcome Back';
   static const String loginDesc = 'Please enter your details to sign in to your account';
+  static const String signUpDesc = 'Enter your details to create a new account';
   static const String haveAccount = 'Don\'t have an account?';
+  static const String alreadyHaveAccount = 'Already have an account?';
   static const String createAccount = 'Create Account';
 
 }
