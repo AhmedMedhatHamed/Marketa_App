@@ -1,6 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
-import 'package:marketa/core/utills/cache_helper.dart';
+import 'package:marketa/core/database/cache_helper.dart';
+import 'package:marketa/core/services/service_locator.dart';
 part 'app_state.dart';
 
 class AppCubit extends Cubit<AppState> {
@@ -11,13 +12,13 @@ class AppCubit extends Cubit<AppState> {
   bool isDark = false;
 
   void loadTheme() {
-    isDark = CacheHelper.getData(key: 'isDark');
+    final isDark = getIt<CacheHelper>().getData(key: 'isDark') == true;
     emit(AppThemeChanged(isDark));
   }
 
   void toggleTheme(bool value) {
     isDark = value;
-    CacheHelper.saveData(key: 'isDark', value: value);
+    getIt<CacheHelper>().saveData(key: 'isDark', value: value);
     emit(AppThemeChanged(isDark));
   }
 }

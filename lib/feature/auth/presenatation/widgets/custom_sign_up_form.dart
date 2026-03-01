@@ -24,7 +24,7 @@ class CustomSignUpForm extends StatelessWidget {
           customShowSnackBar(context, state);
         } else if (state is AuthSuccessState) {
           customToast('Please Verify Your Account');
-          context.go('/signIn');
+          context.go('/loginView');
         }
       },
       builder: (context, state) {

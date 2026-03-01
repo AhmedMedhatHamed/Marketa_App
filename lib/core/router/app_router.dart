@@ -8,6 +8,7 @@ import 'package:marketa/feature/home/presentation/home_view.dart';
 import 'package:marketa/feature/on_boarding/presentation/cubit/on_boarding_cubit.dart';
 import 'package:marketa/feature/on_boarding/presentation/views/on_boarding_view.dart';
 import 'package:marketa/feature/splash/presentation/splash_view.dart';
+import 'package:marketa/root.dart';
 
 final GoRouter router = GoRouter(
   initialLocation: '/',
@@ -23,6 +24,12 @@ final GoRouter router = GoRouter(
       builder:
           (context, state)
       => const HomeView(),
+    ),
+    GoRoute(
+      path: '/root',
+      builder:
+          (context, state)
+      => const RootScreen(),
     ),
     GoRoute(
       path: '/loginView',

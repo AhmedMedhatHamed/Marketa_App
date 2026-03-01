@@ -1,17 +1,16 @@
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
+import 'package:marketa/feature/auth/presenatation/widgets/custom_text_field.dart';
+import 'package:marketa/feature/auth/presenatation/cubit/auth_cubit.dart';
 import 'package:marketa/core/app_function/custom_navigate.dart';
-import 'package:marketa/core/utills/app_color.dart';
+import 'package:marketa/core/widgets/custom_snackbar.dart';
+import 'package:marketa/core/widgets/custom_button.dart';
 import 'package:marketa/core/utills/app_strings.dart';
 import 'package:marketa/core/utills/text_styles.dart';
-import 'package:marketa/core/widgets/custom_button.dart';
-import 'package:marketa/core/widgets/custom_snackbar.dart';
-import 'package:marketa/feature/auth/presenatation/cubit/auth_cubit.dart';
-import 'package:marketa/feature/auth/presenatation/widgets/custom_text_field.dart';
-
+import 'package:marketa/core/utills/app_color.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'custom_toast.dart';
 
 class CustomLoginWidget extends StatelessWidget {
@@ -26,7 +25,7 @@ class CustomLoginWidget extends StatelessWidget {
           customShowSnackBarTwo(context, state);
         } else if (state is SignInSuccessState) {
           if (FirebaseAuth.instance.currentUser!.emailVerified) {
-            customReplacementNavigate(context, '/homeView');
+            customReplacementNavigate(context, '/root');
             customToast('Welcome!');
           } else {
             customToast('Please Verify Your Account');
