@@ -11,9 +11,11 @@ class AppStyle {
     scaffoldBackgroundColor:
     isDark ? AppColor.darkScaffoldBackground : AppColor.lightScaffoldBackground,
     brightness: isDark ? Brightness.dark : Brightness.light,
-    appBarTheme: const AppBarTheme(
+    appBarTheme: AppBarTheme(
       elevation: 0.0,
-      systemOverlayStyle: SystemUiOverlayStyle.light,
+      systemOverlayStyle: isDark
+          ? SystemUiOverlayStyle.light
+          : SystemUiOverlayStyle.dark,
     ),
   );
 }

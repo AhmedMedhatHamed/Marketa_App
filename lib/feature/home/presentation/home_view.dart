@@ -11,19 +11,17 @@ class HomeView extends StatelessWidget {
       body: Center(
         child: BlocBuilder<AppCubit, AppState>(
           builder: (context, state) {
-            final cubit = context.read<AppCubit>();
+            AppCubit appCubit = BlocProvider.of<AppCubit>(context);
             return SwitchListTile(
               title: const Text(
                 'Dark Mode',
                 style: TextStyle(
-                  fontSize: 30,
+                  fontSize: 30.0,
                   fontWeight: FontWeight.w800,
                 ),
               ),
-              value: cubit.isDark,
-              onChanged: (value) {
-                cubit.toggleTheme(value);
-              },
+              value: appCubit.isDark,
+              onChanged: appCubit.toggleTheme,
             );
           },
         ),

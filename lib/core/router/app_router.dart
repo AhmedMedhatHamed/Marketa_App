@@ -1,5 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:marketa/core/cubit/app_cubit.dart';
 import 'package:marketa/feature/auth/presenatation/cubit/auth_cubit.dart';
 import 'package:marketa/feature/auth/presenatation/views/forget_password_view.dart';
 import 'package:marketa/feature/auth/presenatation/views/login_view.dart';
@@ -13,46 +14,35 @@ import 'package:marketa/root.dart';
 final GoRouter router = GoRouter(
   initialLocation: '/',
   routes: [
-    GoRoute(
-        path: '/',
-        builder:
-            (context, state)
-        => const SplashView(),
-    ),
+    GoRoute(path: '/', builder: (context, state) => const SplashView()),
     GoRoute(
       path: '/homeView',
-      builder:
-          (context, state)
-      => const HomeView(),
+      builder: (context, state) => const HomeView(),
     ),
     GoRoute(
       path: '/root',
-      builder:
-          (context, state)
-      => const RootScreen(),
+      builder: (context, state) => BlocProvider(
+        create: (context) => AppCubit(),
+        child: const RootView(),
+      ),
     ),
     GoRoute(
       path: '/loginView',
-      builder:
-          (context, state)
-      => BlocProvider(
-        create: (context)=> AuthCubit(),
-          child: const LoginView()),
+      builder: (context, state) => BlocProvider(
+        create: (context) => AuthCubit(),
+        child: const LoginView(),
+      ),
     ),
     GoRoute(
       path: '/signUp',
-      builder:
-          (context, state)
-      => BlocProvider(
-          create: (context)=> AuthCubit(),
-          child: const SignUpView(),
+      builder: (context, state) => BlocProvider(
+        create: (context) => AuthCubit(),
+        child: const SignUpView(),
       ),
     ),
     GoRoute(
       path: '/forgetPassword',
-      builder:
-          (context, state)
-      => const ForgetPasswordView(),
+      builder: (context, state) => const ForgetPasswordView(),
     ),
     GoRoute(
       path: '/onBoarding',

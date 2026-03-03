@@ -12,11 +12,11 @@ class MarketaApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<AppCubit, AppState>(
       builder: (context, state) {
-        final cubit = context.read<AppCubit>();
+        AppCubit appCubit = BlocProvider.of<AppCubit>(context);
         return MaterialApp.router(
           debugShowCheckedModeBanner: false,
           title: AppStrings.appName,
-          theme: AppStyle(cubit.isDark).themeData,
+          theme: AppStyle(appCubit.isDark).themeData,
           routerConfig: router,
         );
       },
