@@ -10,5 +10,4 @@ final class AppThemeChanged extends AppState {
 
   AppThemeChanged(this.isDark);
 }
-
 final class ChangeBottomNavBarState extends AppState{}

@@ -13,7 +13,7 @@ class Logo extends StatelessWidget {
           borderRadius: BorderRadius.circular(24.0),
           image: DecorationImage(
             image: AssetImage(
-              AppImages.logo,
+              AppAssets.logo,
             ),
           ),
         ),

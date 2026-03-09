@@ -39,15 +39,11 @@ flutter:
 
   uses-material-design: true
 
-  # To add assets to your application, add an assets section, like this:
   assets:
      - assets/images/Users/
      - assets/images/admin/
-  # To add custom fonts to your application, add a fonts section here,
-  # in this "flutter" section. Each entry in this list should have a
-  # "family" key with the font family name, and a "fonts" key with a
-  # list giving the asset and other descriptors for the font. For
-  # example:
+
+
   fonts:
      - family: Poppins
        fonts:
@@ -58,7 +54,3 @@ flutter:
      - family: Archivo
        fonts:
          - asset: assets/fonts/Archivo_Black/ArchivoBlack-Regular.ttf
-
-  #
-  # For details regarding fonts from package dependencies,
-  # see https://flutter.dev/to/font-from-package

@@ -33,8 +33,48 @@ class CustomButton extends StatelessWidget {
           ),
         ),
         onPressed: onPressed,
-        child: Text(text, style: CustomTextStyles.poppins400styles20),
+        child: Text(text, style: CustomTextStyles.poppins400styles20White),
       ),
     );
   }
 }
+
+class CustomButtonWithIcon extends StatelessWidget {
+  const CustomButtonWithIcon({
+    super.key,
+    this.onPressed,
+    required this.text,
+    this.height,
+    this.color,
+    this.radius,
+    this.width,
+    this.icon,
+  });
+
+  final void Function()? onPressed;
+  final String text;
+  final double? height;
+  final double? width;
+  final Color? color;
+  final double? radius;
+  final Icon? icon;
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: width ?? double.infinity,
+      height: height ?? 50.0,
+      child: ElevatedButton.icon(
+        icon:icon,
+        style: ElevatedButton.styleFrom(
+          backgroundColor: color ??AppColor.primaryColor,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadiusGeometry.circular(radius?? 24.0),
+          ),
+        ),
+        onPressed: onPressed,
+        label: Text(text, style: CustomTextStyles.poppins400styles20White),
+      ),
+    );
+  }
+}
+

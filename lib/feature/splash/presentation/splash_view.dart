@@ -2,7 +2,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:marketa/core/database/cache_helper.dart';
-import 'package:marketa/core/services/service_locator.dart';
 import 'package:marketa/core/utills/app_strings.dart';
 import 'package:marketa/core/utills/text_styles.dart';
 
@@ -59,7 +58,7 @@ class _SplashViewState extends State<SplashView>
 
     final user = FirebaseAuth.instance.currentUser;
     final isOnBoardingVisited =
-        getIt<CacheHelper>().getData(key: 'isOnBoardingVisited') == true;
+        CacheHelper().getData(key: 'isOnBoardingVisited') == true;
 
     if (!isOnBoardingVisited && user == null) {
       context.go('/onBoarding');

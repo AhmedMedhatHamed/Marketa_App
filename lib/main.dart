@@ -1,14 +1,10 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'app/marketa_app.dart';
 import 'core/app_function/auth_state_changes.dart';
-import 'core/cubit/app_cubit.dart';
 import 'core/database/cache_helper.dart';
-import 'core/services/service_locator.dart';
 import 'firebase_options.dart';
-
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -16,9 +12,9 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+
+  await CacheHelper().init();
   authStateChanges();
-  setupServiceLocator();
-  await getIt<CacheHelper>().init();
 
   SystemChrome.setSystemUIOverlayStyle(
     const SystemUiOverlayStyle(
@@ -27,11 +23,9 @@ void main() async {
       statusBarBrightness: Brightness.light,
     ),
   );
+
   runApp(
-    BlocProvider(
-      create: (context) => AppCubit(),
-      child: const MarketaApp(),
-    ),
+    const MarketaApp(),
   );
 }
 

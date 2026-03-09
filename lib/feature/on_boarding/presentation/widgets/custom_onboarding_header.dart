@@ -49,7 +49,7 @@ class CustomOnboardingHeader extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children:  [
               Image.asset(
-                AppImages.onBoardingIcon,
+                AppAssets.onBoardingIcon,
                 height:42.0,
                 width: 55.0,
               ),
