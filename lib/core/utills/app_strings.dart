@@ -24,6 +24,7 @@ abstract class AppStrings {
   static const String settings = 'Settings';
   static const String logout = 'Logout';
 
-
+////////////////////////////////////////////////////////////////////////
+static const String shoppingBasket = 'Shopping Basket';
 
 }

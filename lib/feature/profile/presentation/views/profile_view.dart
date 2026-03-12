@@ -1,14 +1,14 @@
-import 'package:flutter/material.dart';
-import 'package:iconly/iconly.dart';
-import 'package:marketa/core/utills/app_color.dart';
-import 'package:marketa/core/utills/app_images.dart';
-import 'package:marketa/core/utills/app_strings.dart';
-import 'package:marketa/core/utills/text_styles.dart';
-import 'package:marketa/core/widgets/custom_button.dart';
-import 'package:marketa/core/widgets/custom_divider.dart';
+import 'package:marketa/core/widgets/app_bar_leading.dart';
+import 'package:marketa/core/widgets/custom_app_bar_text.dart';
 import 'package:marketa/feature/profile/widgets/account_details_row.dart';
 import 'package:marketa/feature/profile/widgets/general_column.dart';
 import 'package:marketa/feature/profile/widgets/them_row.dart';
+import 'package:marketa/core/widgets/custom_button.dart';
+import 'package:marketa/core/widgets/custom_divider.dart';
+import 'package:marketa/core/utills/app_color.dart';
+import 'package:marketa/core/utills/app_strings.dart';
+import 'package:flutter/material.dart';
+import 'package:iconly/iconly.dart';
 
 class ProfileView extends StatelessWidget {
   const ProfileView({super.key});
@@ -17,14 +17,8 @@ class ProfileView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        centerTitle: true,
-        leading: Image.asset(AppAssets.shoppingCart, fit: BoxFit.fill),
-        title: Text(
-          AppStrings.appName,
-          style: CustomTextStyles.poppins500styles24Black.copyWith(
-            fontSize: 18.0,
-          ),
-        ),
+        leading: AppBarLeading(),
+        title: CustomAppBarText(text: AppStrings.appName),
       ),
       body: CustomScrollView(
         physics: BouncingScrollPhysics(),
