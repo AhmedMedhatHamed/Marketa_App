@@ -8,4 +8,5 @@ class AppColor {
   static const greyColor = Color(0xff64748B);
   static  Color? errorMsgColor = Colors.red[900];
   static const Color offWhite = Color(0xffF8F4F9);
+  static  Color? blueSplash = Colors.blue[100];
 }

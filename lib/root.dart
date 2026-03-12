@@ -28,7 +28,9 @@ class _RootViewState extends State<RootView> {
       label: 'Search',
     ),
     BottomNavigationBarItem(
-      icon: Icon(IconlyLight.bag_2),
+      icon: Badge(
+        label: Text('6',),
+          child: Icon(IconlyLight.bag_2)),
       activeIcon: Icon(IconlyBold.bag_2),
       label: 'Cart',
     ),

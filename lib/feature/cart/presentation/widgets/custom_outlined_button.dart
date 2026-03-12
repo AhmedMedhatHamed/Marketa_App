@@ -4,8 +4,9 @@ import 'package:marketa/core/utills/app_color.dart';
 import 'package:marketa/core/utills/text_styles.dart';
 
 class CustomOutlinedButton extends StatelessWidget {
-  const CustomOutlinedButton({super.key, required this.text});
+  const CustomOutlinedButton({super.key, required this.text, required this.onPressed});
   final String text;
+  final void Function() onPressed;
   @override
   Widget build(BuildContext context) {
     return OutlinedButton.icon(
@@ -18,7 +19,7 @@ class CustomOutlinedButton extends StatelessWidget {
           color: AppColor.greyColor,
         ),
       ),
-      onPressed: () {},
+      onPressed: onPressed,
       icon: Icon(IconlyLight.arrow_down_2),
       label: Text(
         text,

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:iconly/iconly.dart';
 import 'package:marketa/core/utills/text_styles.dart';
 import 'package:marketa/feature/cart/presentation/widgets/custom_outlined_button.dart';
+import 'package:marketa/feature/cart/presentation/widgets/quantity_widget.dart';
 
 class CartWidget extends StatelessWidget {
   const CartWidget({super.key});
@@ -53,7 +54,26 @@ class CartWidget extends StatelessWidget {
                           "16\$",
                           style: CustomTextStyles.poppins300styles16,
                         ),
-                        CustomOutlinedButton(text: 'Qty: 1',)
+                        CustomOutlinedButton(
+                          text: 'Qty: 1',
+                          onPressed: () {
+                            showModalBottomSheet(
+                              backgroundColor: Theme.of(
+                                context,
+                              ).scaffoldBackgroundColor,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadiusGeometry.only(
+                                  topRight: Radius.circular(20.0),
+                                  topLeft: Radius.circular(20.0),
+                                ),
+                              ),
+                              context: context,
+                              builder: (context) {
+                                return QuantityWidget();
+                              },
+                            );
+                          },
+                        ),
                       ],
                     ),
                   ],
