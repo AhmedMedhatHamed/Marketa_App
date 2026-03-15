@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:marketa/core/utills/app_strings.dart';
 import 'package:marketa/core/widgets/app_bar_leading.dart';
 import 'package:marketa/core/widgets/custom_app_bar_text.dart';
+import 'package:marketa/feature/search/presentation/widgets/search_grid_view_widget.dart';
 import 'package:marketa/feature/search/presentation/widgets/search_text_field.dart';
 
 class SearchView extends StatelessWidget {
@@ -21,13 +22,28 @@ class SearchView extends StatelessWidget {
         ),
         body: CustomScrollView(
           slivers: [
-            SliverToBoxAdapter(
-              child: SizedBox(
-                height: 20.0,
+            SliverToBoxAdapter(child: SizedBox(height: 20.0)),
+            SliverToBoxAdapter(child: SearchTextField()),
+            SliverToBoxAdapter(child: SizedBox(height: 20.0)),
+            SliverGrid(
+              delegate: SliverChildBuilderDelegate(childCount: 20, (
+                context,
+                index,
+              ) {
+                return Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 12.0,
+                    vertical: 0.0,
+                  ),
+                  child: SearchGridViewWidget(),
+                );
+              }),
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                mainAxisSpacing: 5,
+                crossAxisSpacing: 5,
+                mainAxisExtent: 320,
               ),
-            ),
-            SliverToBoxAdapter(
-              child: SearchTextField(),
             ),
           ],
         ),
@@ -35,5 +51,3 @@ class SearchView extends StatelessWidget {
     );
   }
 }
-
-

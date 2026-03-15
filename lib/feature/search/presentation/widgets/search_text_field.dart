@@ -3,10 +3,22 @@ import 'package:iconly/iconly.dart';
 import 'package:marketa/core/utills/app_color.dart';
 import 'package:marketa/feature/auth/presenatation/widgets/custom_text_field.dart';
 
-class SearchTextField extends StatelessWidget {
-   SearchTextField({super.key});
+class SearchTextField extends StatefulWidget {
+  const SearchTextField({super.key});
 
+  @override
+  State<SearchTextField> createState() => _SearchTextFieldState();
+}
+
+class _SearchTextFieldState extends State<SearchTextField> {
   final TextEditingController searchController = TextEditingController();
+
+  @override
+  void dispose() {
+    searchController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -16,7 +28,7 @@ class SearchTextField extends StatelessWidget {
         controller: searchController,
         textInputAction: TextInputAction.search,
         keyboardType: TextInputType.text,
-        prefixIcon: Icon(IconlyLight.search),
+        prefixIcon: const Icon(IconlyLight.search),
         suffixIcon: IconButton(
           onPressed: () {
             searchController.clear();
@@ -24,9 +36,6 @@ class SearchTextField extends StatelessWidget {
           },
           icon: Icon(Icons.clear, color: AppColor.errorMsgColor),
         ),
-        onChanged: (value) {
-          searchController.text = value;
-        },
       ),
     );
   }

@@ -26,6 +26,7 @@ dependencies:
   get_it: ^9.2.1
   iconly: ^1.0.1
   shimmer: ^3.0.0
+  dynamic_height_list_view: ^0.0.2
 
 dev_dependencies:
   flutter_test:
