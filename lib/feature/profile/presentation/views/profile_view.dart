@@ -16,13 +16,13 @@ class ProfileView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        leading: AppBarLeading(),
-        title: CustomAppBarText(text: AppStrings.appName),
-      ),
       body: CustomScrollView(
         physics: BouncingScrollPhysics(),
         slivers: [
+          SliverAppBar(
+            title: CustomAppBarText(text: AppStrings.appName),
+            leading: AppBarLeading(),
+          ),
           SliverToBoxAdapter(child: SizedBox(height: 15.0)),
           SliverToBoxAdapter(child: AccountDetailsRow()),
           SliverToBoxAdapter(child: CustomDivider()),

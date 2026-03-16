@@ -15,13 +15,13 @@ class SearchView extends StatelessWidget {
         FocusScope.of(context).unfocus();
       },
       child: Scaffold(
-        appBar: AppBar(
-          centerTitle: true,
-          leading: AppBarLeading(),
-          title: CustomAppBarText(text: AppStrings.searchAppBarName),
-        ),
         body: CustomScrollView(
           slivers: [
+            SliverAppBar(
+              centerTitle: true,
+              title: CustomAppBarText(text: AppStrings.searchAppBarName),
+              leading: AppBarLeading(),
+            ),
             SliverToBoxAdapter(child: SizedBox(height: 20.0)),
             SliverToBoxAdapter(child: SearchTextField()),
             SliverToBoxAdapter(child: SizedBox(height: 20.0)),

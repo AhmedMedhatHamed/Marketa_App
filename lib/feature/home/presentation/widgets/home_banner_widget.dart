@@ -1,5 +1,6 @@
+import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_card_swiper/flutter_card_swiper.dart';
+import 'package:marketa/core/utills/app_color.dart';
 import 'package:marketa/core/utills/app_images.dart';
 
 class HomeBannerWidget extends StatelessWidget {
@@ -14,18 +15,27 @@ class HomeBannerWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       height: MediaQuery.of(context).size.height * 0.24,
-      child: CardSwiper(
+      child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20.0),
-        cardsCount: bannerImage.length,
-        cardBuilder: (context, index, percentThresholdX, percentThresholdY,) {
-          return ClipRRect(
-            borderRadius: BorderRadius.circular(12.0),
-            child: Image.asset(
-              bannerImage[index],
-              fit: BoxFit.cover,
+        child: ClipRRect(
+          borderRadius: BorderRadiusGeometry.circular(20.0),
+          child: Swiper(
+            autoplay: true,
+            itemBuilder: (BuildContext context,int index){
+              return Image.asset(
+                bannerImage[index],
+                fit: BoxFit.cover,
+              );
+            },
+            itemCount: bannerImage.length,
+            pagination: SwiperPagination(
+              builder: DotSwiperPaginationBuilder(
+                color: AppColor.greyColor,
+                activeColor: AppColor.secondColor,
+              )
             ),
-          );
-        },
+          ),
+        ),
       ),
     );
   }

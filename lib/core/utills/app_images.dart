@@ -26,5 +26,12 @@ abstract class AppAssets {
   static const String theme = 'assets/images/Users/theme.png';
   static const String banner1 = 'assets/images/Users/banner1.png';
   static const String banner2 = 'assets/images/Users/banner2.png';
-
+  static const String book = 'assets/images/Users/book_img.png';
+  static const String mobiles = 'assets/images/Users/mobiles.png';
+  static const String pc = 'assets/images/Users/pc.png';
+  static const String shoes = 'assets/images/Users/shoes.png';
+  static const String watch = 'assets/images/Users/watch.png';
+  static const String fashion = 'assets/images/Users/fashion.png';
+  static const String cosmetics = 'assets/images/Users/cosmetics.png';
+  static const String electronics = 'assets/images/Users/electronics.png';
 }

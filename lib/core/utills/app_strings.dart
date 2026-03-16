@@ -15,7 +15,6 @@ abstract class AppStrings {
   static const String alreadyHaveAccount = 'Already have an account?';
   static const String createAccount = 'Create Account';
 ////////////////////////////////////////////////////////////
-
   static const String general = 'General';
   static const String allOrder = 'All order';
   static const String wishlist = 'Wishlist';
@@ -23,9 +22,11 @@ abstract class AppStrings {
   static const String address = 'Address';
   static const String settings = 'Settings';
   static const String logout = 'Logout';
-
 ////////////////////////////////////////////////////////////////////////
 static const String shoppingBasket = 'Shopping Basket';
 ///////////////////////////////////////////////////////////////////////
 static const String searchAppBarName = 'Store Products';
+//////////////////////////////////////////////////////////////////////
+static const String latestArrival = 'Latest Arrival';
+static const String categories = 'Categories';
 }
