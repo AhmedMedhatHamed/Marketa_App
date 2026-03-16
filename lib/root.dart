@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:iconly/iconly.dart';
 import 'package:marketa/core/utills/app_color.dart';
 import 'feature/cart/presentation/views/cart_view.dart';
-import 'feature/home/presentation/home_view.dart';
+import 'feature/home/presentation/views/home_view.dart';
 import 'feature/profile/presentation/views/profile_view.dart';
 import 'feature/search/presentation/views/search_view.dart';
 

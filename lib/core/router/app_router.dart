@@ -5,7 +5,7 @@ import 'package:marketa/feature/auth/presenatation/cubit/auth_cubit.dart';
 import 'package:marketa/feature/auth/presenatation/views/forget_password_view.dart';
 import 'package:marketa/feature/auth/presenatation/views/login_view.dart';
 import 'package:marketa/feature/auth/presenatation/views/sign_up_view.dart';
-import 'package:marketa/feature/home/presentation/home_view.dart';
+import 'package:marketa/feature/home/presentation/views/home_view.dart';
 import 'package:marketa/feature/on_boarding/presentation/cubit/on_boarding_cubit.dart';
 import 'package:marketa/feature/on_boarding/presentation/views/on_boarding_view.dart';
 import 'package:marketa/feature/splash/presentation/splash_view.dart';

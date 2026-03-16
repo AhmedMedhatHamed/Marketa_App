@@ -26,18 +26,13 @@ class SearchView extends StatelessWidget {
             SliverToBoxAdapter(child: SearchTextField()),
             SliverToBoxAdapter(child: SizedBox(height: 20.0)),
             SliverGrid(
-              delegate: SliverChildBuilderDelegate(childCount: 20, (
-                context,
-                index,
-              ) {
-                return Padding(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 12.0,
-                    vertical: 0.0,
-                  ),
-                  child: SearchGridViewWidget(),
-                );
-              }),
+              delegate: SliverChildBuilderDelegate(
+                  childCount: 15,
+                  (context, index,)
+                  {
+                    return SearchGridViewWidget();
+                  },
+              ),
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2,
                 mainAxisSpacing: 5,

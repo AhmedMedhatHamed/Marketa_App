@@ -24,5 +24,7 @@ abstract class AppAssets {
   static const String address = 'assets/images/Users/address.png';
   static const String recent = 'assets/images/Users/recent.png';
   static const String theme = 'assets/images/Users/theme.png';
+  static const String banner1 = 'assets/images/Users/banner1.png';
+  static const String banner2 = 'assets/images/Users/banner2.png';
 
 }
