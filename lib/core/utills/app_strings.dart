@@ -29,4 +29,6 @@ static const String searchAppBarName = 'Store Products';
 //////////////////////////////////////////////////////////////////////
 static const String latestArrival = 'Latest Arrival';
 static const String categories = 'Categories';
+///////////////////////////////////////////////////////////////////////
+static const String aboutThisItem = 'About This Item';
 }

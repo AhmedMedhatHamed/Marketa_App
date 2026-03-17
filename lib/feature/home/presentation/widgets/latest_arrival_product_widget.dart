@@ -1,7 +1,7 @@
-import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:iconly/iconly.dart';
 import 'package:marketa/core/utills/text_styles.dart';
+import 'package:marketa/feature/product/presentation/view/product_details_view.dart';
 
 class LatestArrivalProductWidget extends StatelessWidget {
   const LatestArrivalProductWidget({super.key});
@@ -11,8 +11,15 @@ class LatestArrivalProductWidget extends StatelessWidget {
     return SizedBox(
       width: 220,
       child: GestureDetector(
-        onTap: (){
-          log('TODO Product Screen');
+        onTap: () async{
+         await Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) {
+                return ProductDetailsView();
+              },
+            ),
+          );
         },
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -21,8 +28,8 @@ class LatestArrivalProductWidget extends StatelessWidget {
               borderRadius: BorderRadius.circular(12.0),
               child: Image.network(
                 'https://i.ibb.co/8r1Ny2n/20-Nike-Air-Force-1-07.png',
-                height: MediaQuery.of(context).size.width*0.28,
-                width:  MediaQuery.of(context).size.width*0.28,
+                height: MediaQuery.of(context).size.width * 0.28,
+                width: MediaQuery.of(context).size.width * 0.28,
                 fit: BoxFit.cover,
               ),
             ),
@@ -43,25 +50,16 @@ class LatestArrivalProductWidget extends StatelessWidget {
                     children: [
                       IconButton(
                         onPressed: () {},
-                        icon: const Icon(
-                          IconlyLight.heart,
-                          size: 18.0,
-                        ),
+                        icon: const Icon(IconlyLight.heart, size: 18.0),
                       ),
                       IconButton(
                         onPressed: () {},
-                        icon: const Icon(
-                          Icons.add_shopping_cart,
-                          size: 18.0,
-                        ),
+                        icon: const Icon(Icons.add_shopping_cart, size: 18.0),
                       ),
                     ],
                   ),
 
-                  Text(
-                    '1325 \$',
-                    style: CustomTextStyles.poppins300styles16,
-                  ),
+                  Text('1325 \$', style: CustomTextStyles.poppins300styles16),
                 ],
               ),
             ),

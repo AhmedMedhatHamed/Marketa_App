@@ -19,7 +19,7 @@ class HomeView extends StatelessWidget {
             title: CustomAppBarText(text: AppStrings.appName),
             leading: AppBarLeading(),
           ),
-          SliverToBoxAdapter(child: SizedBox(height: 15.0)),
+          SliverToBoxAdapter(child: SizedBox(height: 10.0)),
           SliverToBoxAdapter(child: HomeBannerWidget()),
           SliverToBoxAdapter(child: SizedBox(height: 15.0)),
           SliverToBoxAdapter(

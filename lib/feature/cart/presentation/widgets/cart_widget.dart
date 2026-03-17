@@ -3,6 +3,7 @@ import 'package:iconly/iconly.dart';
 import 'package:marketa/core/utills/text_styles.dart';
 import 'package:marketa/feature/cart/presentation/widgets/custom_outlined_button.dart';
 import 'package:marketa/feature/cart/presentation/widgets/quantity_widget.dart';
+import 'package:marketa/feature/product/presentation/view/product_details_view.dart';
 
 class CartWidget extends StatelessWidget {
   const CartWidget({super.key});
@@ -17,10 +18,22 @@ class CartWidget extends StatelessWidget {
             children: [
               ClipRRect(
                 borderRadius: BorderRadius.circular(12),
-                child: Image.network(
-                  'https://i.ibb.co/8r1Ny2n/20-Nike-Air-Force-1-07.png',
-                  height: MediaQuery.of(context).size.height * 0.2,
-                  width: MediaQuery.of(context).size.height * 0.2,
+                child: GestureDetector(
+                  onTap: () async {
+                    await Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) {
+                          return ProductDetailsView();
+                        },
+                      ),
+                    );
+                  },
+                  child: Image.network(
+                    'https://i.ibb.co/8r1Ny2n/20-Nike-Air-Force-1-07.png',
+                    height: MediaQuery.of(context).size.height * 0.2,
+                    width: MediaQuery.of(context).size.height * 0.2,
+                  ),
                 ),
               ),
               const SizedBox(width: 10.0),

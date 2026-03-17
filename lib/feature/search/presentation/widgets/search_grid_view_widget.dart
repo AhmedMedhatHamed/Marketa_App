@@ -1,8 +1,8 @@
-import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:iconly/iconly.dart';
 import 'package:marketa/core/utills/app_color.dart';
 import 'package:marketa/core/utills/text_styles.dart';
+import 'package:marketa/feature/product/presentation/view/product_details_view.dart';
 
 class SearchGridViewWidget extends StatelessWidget {
   const SearchGridViewWidget({super.key});
@@ -10,8 +10,11 @@ class SearchGridViewWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-        log("TODO navigate to the product details screen");
+      onTap: () async{
+        await Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => ProductDetailsView()),
+        );
       },
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20.0),
