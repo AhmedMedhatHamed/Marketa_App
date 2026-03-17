@@ -1,7 +1,7 @@
-import 'package:flutter/material.dart';
-import 'package:iconly/iconly.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:marketa/core/utills/app_color.dart';
 import 'package:marketa/core/widgets/custom_button.dart';
+import 'package:marketa/core/widgets/heart_button_widget.dart';
 
 class FavoriteAndAddToCartWidget extends StatelessWidget {
   const FavoriteAndAddToCartWidget({super.key});
@@ -13,21 +13,19 @@ class FavoriteAndAddToCartWidget extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
-          Material(
-            color: AppColor.secondColor,
-            shape: CircleBorder(),
-            child: IconButton(
-              onPressed: () {},
-              icon: Icon(IconlyLight.heart,),
-            ),
-          ),
-          SizedBox(width: 10.0,),
+          HeartButtonWidget(color: AppColor.secondColor),
+          SizedBox(width: 10.0),
           Expanded(
             child: CustomButtonWithIcon(
-              onPressed: (){},
+              onPressed: () {},
               text: 'Add to cart',
+              icon: Icon(
+                CupertinoIcons.shopping_cart,
+                color: AppColor.offWhite,
+                size: 24.0,
+              ),
             ),
-          )
+          ),
         ],
       ),
     );

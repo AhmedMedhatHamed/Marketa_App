@@ -1,7 +1,8 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:iconly/iconly.dart';
 import 'package:marketa/core/utills/app_color.dart';
 import 'package:marketa/core/utills/text_styles.dart';
+import 'package:marketa/core/widgets/heart_button_widget.dart';
 import 'package:marketa/feature/product/presentation/view/product_details_view.dart';
 
 class SearchGridViewWidget extends StatelessWidget {
@@ -43,10 +44,7 @@ class SearchGridViewWidget extends StatelessWidget {
                   ),
                 ),
                 Flexible(
-                  child: IconButton(
-                    onPressed: () {},
-                    icon: Icon(IconlyLight.heart),
-                  ),
+                  child: HeartButtonWidget(),
                 ),
               ],
             ),
@@ -70,7 +68,7 @@ class SearchGridViewWidget extends StatelessWidget {
                       child: Padding(
                         padding: EdgeInsets.all(8.0),
                         child: Icon(
-                          Icons.add_shopping_cart_rounded,
+                          CupertinoIcons.shopping_cart,
                           color: Theme.of(context).scaffoldBackgroundColor,
                           size: 18.0,
                         ),

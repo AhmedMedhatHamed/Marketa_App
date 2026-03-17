@@ -1,6 +1,7 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:iconly/iconly.dart';
 import 'package:marketa/core/utills/text_styles.dart';
+import 'package:marketa/core/widgets/heart_button_widget.dart';
 import 'package:marketa/feature/product/presentation/view/product_details_view.dart';
 
 class LatestArrivalProductWidget extends StatelessWidget {
@@ -48,13 +49,13 @@ class LatestArrivalProductWidget extends StatelessWidget {
 
                   Row(
                     children: [
+                     HeartButtonWidget(
+                       size: 18.0,
+                       color: Colors.transparent,
+                     ),
                       IconButton(
                         onPressed: () {},
-                        icon: const Icon(IconlyLight.heart, size: 18.0),
-                      ),
-                      IconButton(
-                        onPressed: () {},
-                        icon: const Icon(Icons.add_shopping_cart, size: 18.0),
+                        icon: const Icon(CupertinoIcons.shopping_cart, size: 18.0),
                       ),
                     ],
                   ),

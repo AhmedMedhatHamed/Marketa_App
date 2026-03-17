@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:iconly/iconly.dart';
+import 'package:marketa/core/utills/app_color.dart';
 import 'package:marketa/core/utills/text_styles.dart';
+import 'package:marketa/core/widgets/heart_button_widget.dart';
 import 'package:marketa/feature/cart/presentation/widgets/custom_outlined_button.dart';
 import 'package:marketa/feature/cart/presentation/widgets/quantity_widget.dart';
 import 'package:marketa/feature/product/presentation/view/product_details_view.dart';
@@ -50,11 +51,13 @@ class CartWidget extends StatelessWidget {
                           children: [
                             IconButton(
                               onPressed: () {},
-                              icon: Icon(Icons.clear, color: Colors.red),
+                              icon: Icon(
+                                Icons.clear,
+                                color: AppColor.errorMsgColor,
+                              ),
                             ),
-                            IconButton(
-                              onPressed: () {},
-                              icon: Icon(IconlyLight.heart, color: Colors.red),
+                            HeartButtonWidget(
+                              iconColor: AppColor.errorMsgColor,
                             ),
                           ],
                         ),
