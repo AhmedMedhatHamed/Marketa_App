@@ -3,6 +3,8 @@ import 'package:iconly/iconly.dart';
 import 'package:marketa/core/utills/app_images.dart';
 import 'package:marketa/core/utills/app_strings.dart';
 import 'package:marketa/core/utills/text_styles.dart';
+import 'package:marketa/feature/profile/presentation/views/viewed_recently_view.dart';
+import 'package:marketa/feature/profile/presentation/views/wishlist_view.dart';
 
 class GeneralColumn extends StatelessWidget {
   const GeneralColumn({super.key});
@@ -18,36 +20,38 @@ class GeneralColumn extends StatelessWidget {
             AppStrings.general,
             style: CustomTextStyles.poppins400styles18Black,
           ),
-          SizedBox(
-            height: 10.0,
-          ),
+          SizedBox(height: 10.0),
           ListTile(
             title: Text(AppStrings.allOrder),
             leading: Image.asset(AppAssets.orderSvg, height: 40, width: 40),
             trailing: Icon(IconlyBold.arrow_right_2),
             onTap: () {},
           ),
-          SizedBox(
-            height: 5.0,
-          ),
+          SizedBox(height: 5.0),
           ListTile(
             title: Text(AppStrings.wishlist),
             leading: Image.asset(AppAssets.wishlist, height: 40, width: 40),
             trailing: Icon(IconlyBold.arrow_right_2),
-            onTap: () {},
+            onTap: () async {
+              await Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => WishlistView()),
+              );
+            },
           ),
-          SizedBox(
-            height: 5.0,
-          ),
+          SizedBox(height: 5.0),
           ListTile(
             title: Text(AppStrings.viewedRecently),
             leading: Image.asset(AppAssets.recent, height: 40, width: 40),
             trailing: Icon(IconlyBold.arrow_right_2),
-            onTap: () {},
+            onTap: () async {
+              await Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => ViewedRecentlyView()),
+              );
+            },
           ),
-          SizedBox(
-            height: 5.0,
-          ),
+          SizedBox(height: 5.0),
           ListTile(
             title: Text(AppStrings.address),
             leading: Image.asset(AppAssets.address, height: 40, width: 40),
