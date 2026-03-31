@@ -3,8 +3,9 @@ import 'package:iconly/iconly.dart';
 import 'package:marketa/core/utills/app_images.dart';
 import 'package:marketa/core/utills/app_strings.dart';
 import 'package:marketa/core/utills/text_styles.dart';
-import 'package:marketa/feature/profile/presentation/views/viewed_recently_view.dart';
-import 'package:marketa/feature/profile/presentation/views/wishlist_view.dart';
+import 'package:marketa/feature/profile/presentation/views/inners/all_order_view.dart';
+import 'package:marketa/feature/profile/presentation/views/inners/viewed_recently_view.dart';
+import 'package:marketa/feature/profile/presentation/views/inners/wishlist_view.dart';
 
 class GeneralColumn extends StatelessWidget {
   const GeneralColumn({super.key});
@@ -25,7 +26,12 @@ class GeneralColumn extends StatelessWidget {
             title: Text(AppStrings.allOrder),
             leading: Image.asset(AppAssets.orderSvg, height: 40, width: 40),
             trailing: Icon(IconlyBold.arrow_right_2),
-            onTap: () {},
+            onTap: () async {
+              await Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => AllOrderView()),
+              );
+            },
           ),
           SizedBox(height: 5.0),
           ListTile(

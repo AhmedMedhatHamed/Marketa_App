@@ -9,8 +9,9 @@ import 'package:marketa/feature/home/presentation/views/home_view.dart';
 import 'package:marketa/feature/on_boarding/presentation/cubit/on_boarding_cubit.dart';
 import 'package:marketa/feature/on_boarding/presentation/views/on_boarding_view.dart';
 import 'package:marketa/feature/product/presentation/view/product_details_view.dart';
-import 'package:marketa/feature/profile/presentation/views/viewed_recently_view.dart';
-import 'package:marketa/feature/profile/presentation/views/wishlist_view.dart';
+import 'package:marketa/feature/profile/presentation/views/inners/all_order_view.dart';
+import 'package:marketa/feature/profile/presentation/views/inners/viewed_recently_view.dart';
+import 'package:marketa/feature/profile/presentation/views/inners/wishlist_view.dart';
 import 'package:marketa/feature/splash/presentation/splash_view.dart';
 import 'package:marketa/root.dart';
 
@@ -50,6 +51,10 @@ final GoRouter router = GoRouter(
     GoRoute(
       path: '/productDetails',
       builder: (context, state) => const ProductDetailsView(),
+    ),
+    GoRoute(
+      path: '/allOrder',
+      builder: (context, state) => const AllOrderView(),
     ),
     GoRoute(
       path: '/wishlist',
