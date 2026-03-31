@@ -1,3 +1,4 @@
+import 'package:marketa/feature/auth/presenatation/views/forget_password_view.dart';
 import 'package:marketa/feature/auth/presenatation/widgets/custom_text_field.dart';
 import 'package:marketa/feature/auth/presenatation/cubit/auth_cubit.dart';
 import 'package:marketa/core/app_function/custom_navigate.dart';
@@ -8,7 +9,6 @@ import 'package:marketa/core/utills/text_styles.dart';
 import 'package:marketa/core/utills/app_color.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'custom_toast.dart';
@@ -71,8 +71,13 @@ class CustomLoginWidget extends StatelessWidget {
                 ),
                 SizedBox(height: 14.0),
                 GestureDetector(
-                  onTap: () {
-                    context.go('/forgetPassword');
+                  onTap: () async {
+                    await Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => ForgetPasswordView(),
+                      ),
+                    );
                   },
                   child: Align(
                     alignment: Alignment.topRight,
