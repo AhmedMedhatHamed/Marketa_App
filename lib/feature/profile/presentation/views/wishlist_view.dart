@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:iconly/iconly.dart';
+import 'package:marketa/core/utills/app_color.dart';
 import 'package:marketa/core/utills/app_images.dart';
 import 'package:marketa/core/utills/app_strings.dart';
 import 'package:marketa/core/widgets/custom_app_bar_text.dart';
@@ -30,6 +32,9 @@ class WishlistView extends StatelessWidget {
                     text: AppStrings.wishlist,
                     fontSize: 22.0,
                   ),
+                  actions: [
+                    IconButton(onPressed: (){}, icon: Icon(IconlyBold.delete,color: AppColor.errorMsgColor,),),
+                  ],
                 ),
                 SliverGrid(
                   delegate: SliverChildBuilderDelegate(

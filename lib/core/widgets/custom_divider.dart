@@ -2,15 +2,23 @@ import 'package:flutter/material.dart';
 import 'package:marketa/core/utills/app_color.dart';
 
 class CustomDivider extends StatelessWidget {
-  const CustomDivider({super.key});
+  const CustomDivider({
+    super.key,
+    this.thickness,
+    this.endIndent,
+    this.indent,
+    this.color,
+  });
 
+  final double? thickness, endIndent, indent;
+  final Color? color;
   @override
   Widget build(BuildContext context) {
     return Divider(
-      color: AppColor.greyColor,
-      thickness: 1,
-      endIndent: 25,
-      indent: 25,
+      color: color ?? AppColor.greyColor,
+      thickness: thickness ?? 1,
+      endIndent:endIndent ?? 25,
+      indent:indent ?? 25,
     );
   }
 }

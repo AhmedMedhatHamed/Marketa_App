@@ -12,6 +12,7 @@ class CustomButton extends StatelessWidget {
     this.color,
     this.radius,
     this.width,
+    this.fontSize,
   });
 
   final void Function()? onPressed;
@@ -20,6 +21,8 @@ class CustomButton extends StatelessWidget {
   final double? width;
   final Color? color;
   final double? radius;
+  final double? fontSize;
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -33,7 +36,9 @@ class CustomButton extends StatelessWidget {
           ),
         ),
         onPressed: onPressed,
-        child: Text(text, style: CustomTextStyles.poppins400styles20White),
+        child: Text(text, style: CustomTextStyles.poppins400styles20White.copyWith(
+          fontSize: fontSize ?? 20.0,
+        )),
       ),
     );
   }
@@ -49,6 +54,8 @@ class CustomButtonWithIcon extends StatelessWidget {
     this.radius,
     this.width,
     this.icon,
+    this.textColor,
+    this.fontSize,
   });
 
   final void Function()? onPressed;
@@ -56,7 +63,9 @@ class CustomButtonWithIcon extends StatelessWidget {
   final double? height;
   final double? width;
   final Color? color;
+  final Color? textColor;
   final double? radius;
+  final double? fontSize;
   final Icon? icon;
   @override
   Widget build(BuildContext context) {
@@ -72,7 +81,11 @@ class CustomButtonWithIcon extends StatelessWidget {
           ),
         ),
         onPressed: onPressed,
-        label: Text(text, style: CustomTextStyles.poppins400styles20White),
+        label: Text(text, style: CustomTextStyles.poppins400styles20White.copyWith(
+          color: textColor ?? Colors.white,
+          fontSize: fontSize ?? 20.0,
+        ),
+        ),
       ),
     );
   }

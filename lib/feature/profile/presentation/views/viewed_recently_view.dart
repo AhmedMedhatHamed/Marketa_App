@@ -8,16 +8,16 @@ import 'package:marketa/feature/search/presentation/widgets/search_grid_view_wid
 class ViewedRecentlyView extends StatelessWidget {
   const ViewedRecentlyView({super.key});
 
-  final bool isEmpty = false;
+  final bool isEmpty = true;
   @override
   Widget build(BuildContext context) {
     return isEmpty
         ? Scaffold(
       body: EmptyCartBag(
         image: AppAssets.bagWish,
-        title: 'Your recently viewed is empty!',
+        title: 'Your viewed recently is empty!',
         subtitle:
-        'Looks like you didn\'t add anything yet to your recently viewed\ngo ahead and start shopping now',
+        'Looks like you didn\'t add anything yet to your viewed recently\ngo ahead and start shopping now',
         buttonText: 'Shop Now',
         onPressed: () {},
       ),

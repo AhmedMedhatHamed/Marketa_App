@@ -1,3 +1,6 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:go_router/go_router.dart';
+import 'package:marketa/core/app_function/app_methods.dart';
 import 'package:marketa/feature/profile/presentation/widgets/account_details_row.dart';
 import 'package:marketa/feature/profile/presentation/widgets/general_column.dart';
 import 'package:marketa/feature/profile/presentation/widgets/them_row.dart';
@@ -9,7 +12,6 @@ import 'package:marketa/core/utills/app_color.dart';
 import 'package:marketa/core/utills/app_strings.dart';
 import 'package:flutter/material.dart';
 import 'package:iconly/iconly.dart';
-
 
 class ProfileView extends StatelessWidget {
   const ProfileView({super.key});
@@ -40,7 +42,17 @@ class ProfileView extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20.0),
               child: CustomButtonWithIcon(
-                onPressed: () {},
+                onPressed: () {
+                  AppMethods.errorAndWarningDialog(
+                    context: context,
+                    text: 'Are You Sure?',
+                    isError: false,
+                    onPressed: () {
+                      FirebaseAuth.instance.signOut();
+                      context.go('/loginView');
+                    },
+                  );
+                },
                 text: AppStrings.logout,
                 color: AppColor.errorMsgColor,
                 icon: Icon(

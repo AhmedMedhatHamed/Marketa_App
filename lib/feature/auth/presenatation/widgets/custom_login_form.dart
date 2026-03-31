@@ -85,7 +85,7 @@ class CustomLoginWidget extends StatelessWidget {
                     ),
                   ),
                 ),
-                SizedBox(height: MediaQuery.of(context).size.height * 0.16),
+                SizedBox(height: 20.0),
                 state is SignInLoadingState
                     ? Align(
                         alignment: Alignment.topCenter,
