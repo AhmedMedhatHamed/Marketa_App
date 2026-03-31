@@ -11,13 +11,11 @@ class GoogleButton extends StatelessWidget {
     return CustomButtonWithIcon(
       text: 'Login With Google',
       textColor: Colors.black,
+      icon: Icon(Ionicons.logo_google, color: AppColor.errorMsgColor),
       fontSize: 18.0,
-      icon: Icon(Ionicons.logo_google, color: AppColor.errorMsgColor,),
+      width: 230.0,
       color: AppColor.offWhite,
-      onPressed: () async{
-
-      },
-      width: 230,
+      onPressed: () async {},
     );
   }
 }

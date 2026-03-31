@@ -9,6 +9,7 @@ part 'auth_state.dart';
 class AuthCubit extends Cubit<AuthState> {
   AuthCubit() : super(AuthInitial());
 
+  //XFile? pickedImage;
   String? emailAddress;
   String? password;
   String? firstName;

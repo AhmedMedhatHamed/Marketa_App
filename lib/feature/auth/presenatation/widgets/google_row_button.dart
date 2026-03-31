@@ -18,7 +18,7 @@ class GoogleRowButtons extends StatelessWidget {
           CustomButton(
             text: 'Guest',
             fontSize: 18.0,
-            onPressed: () {},
+            onPressed: () async{},
             color: AppColor.primaryColor,
             width: 102.0,
           ),
