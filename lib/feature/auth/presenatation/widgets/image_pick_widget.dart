@@ -22,11 +22,16 @@ class ImagePickerWidget extends StatelessWidget {
                     child: Container(
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(8.0),
-                        border: BoxBorder.all(),
+                        border: Border.all(),
                       ),
                     ),
                   )
-                : Image.file(File(pickedImage!.path), fit: BoxFit.fill),
+                : Image.file(
+                    File(pickedImage!.path),
+                    fit: BoxFit.cover,
+                    width: double.infinity,
+                    height: double.infinity,
+                  ),
           ),
           Positioned(
             top: 0,

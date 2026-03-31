@@ -33,5 +33,10 @@ class ForgetPasswordErrorState extends AuthState{
   ForgetPasswordErrorState(this.errorMsg);
 }
 
+class CameraPicker extends AuthState{}
+class GalleryPicker extends AuthState{}
+class RemovePicker extends AuthState{}
+
+
 
 

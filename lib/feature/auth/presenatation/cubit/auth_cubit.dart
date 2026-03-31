@@ -3,13 +3,15 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:marketa/core/app_function/app_methods.dart';
 
 part 'auth_state.dart';
 
 class AuthCubit extends Cubit<AuthState> {
   AuthCubit() : super(AuthInitial());
 
-  //XFile? pickedImage;
+  XFile? pickedImage;
   String? emailAddress;
   String? password;
   String? firstName;
@@ -100,5 +102,31 @@ class AuthCubit extends Cubit<AuthState> {
       "first_name": firstName,
       "last_name": lastName,
     });
+  }
+
+  Future<void> localPickImage(BuildContext context) async {
+    ImagePicker imagePicker = ImagePicker();
+
+    AppMethods.pickImageDialog(
+      context: context,
+      cameraFct: () async {
+        final image = await imagePicker.pickImage(source: ImageSource.camera);
+        if (image != null) {
+          pickedImage = image;
+          emit(CameraPicker());
+        }
+      },
+      galleryFct: () async {
+        final image = await imagePicker.pickImage(source: ImageSource.gallery);
+        if (image != null) {
+          pickedImage = image;
+          emit(GalleryPicker());
+        }
+      },
+      remove: () {
+        pickedImage = null;
+        emit(RemovePicker());
+      },
+    );
   }
 }

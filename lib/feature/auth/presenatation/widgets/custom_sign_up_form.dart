@@ -8,6 +8,7 @@ import 'package:marketa/core/widgets/custom_button.dart';
 import 'package:marketa/core/widgets/custom_snackbar.dart';
 import 'package:marketa/feature/auth/presenatation/cubit/auth_cubit.dart';
 import 'package:marketa/feature/auth/presenatation/widgets/custom_text_field.dart';
+import 'package:marketa/feature/auth/presenatation/widgets/image_pick_widget.dart';
 import 'package:marketa/feature/auth/presenatation/widgets/terms_and_condition.dart';
 import 'custom_checkbox.dart';
 import 'custom_toast.dart';
@@ -34,6 +35,19 @@ class CustomSignUpForm extends StatelessWidget {
             key: authCubit.signupFormKey,
             child: Column(
               children: [
+                Center(
+                  child: SizedBox(
+                    height: MediaQuery.of(context).size.width * 0.3,
+                    width: MediaQuery.of(context).size.width * 0.4,
+                    child: ImagePickerWidget(
+                      onTap: () {
+                        authCubit.localPickImage(context);
+                      },
+                      pickedImage: authCubit.pickedImage,
+                    ),
+                  ),
+                ),
+                SizedBox(height: 10.0),
                 CustomTextFormField(
                   onChanged: (value) {
                     authCubit.firstName = value;
@@ -86,35 +100,29 @@ class CustomSignUpForm extends StatelessWidget {
                   ),
                   labelText: 'Password',
                 ),
-                Row(
-                  children: const
-                  [
-                    CustomCheckbox(),
-                    TermsAndConditions(),
-                  ],
-                ),
+                Row(children: const [CustomCheckbox(), TermsAndConditions()]),
                 SizedBox(height: MediaQuery.of(context).size.height * 0.015),
-                state is AuthLoadingState?
-                Align(
-                  alignment: Alignment.topCenter,
-                  child: CupertinoActivityIndicator(
-                    color: AppColor.primaryColor,
-                  ),
-                ):
-                CustomButton(
-                  color: authCubit.isCheckBoxActive == false
-                      ? Colors.grey
-                      : AppColor.primaryColor,
-                  onPressed: () {
-                    if (authCubit.isCheckBoxActive == true) {
-                      if (authCubit.signupFormKey.currentState!
-                          .validate()) {
-                        authCubit.signUpWithEmailAndPassword();
-                      }
-                    }
-                  },
-                  text: AppStrings.signUp,
-                ),
+                state is AuthLoadingState
+                    ? Align(
+                        alignment: Alignment.topCenter,
+                        child: CupertinoActivityIndicator(
+                          color: AppColor.primaryColor,
+                        ),
+                      )
+                    : CustomButton(
+                        color: authCubit.isCheckBoxActive == false
+                            ? Colors.grey
+                            : AppColor.primaryColor,
+                        onPressed: () {
+                          if (authCubit.isCheckBoxActive == true) {
+                            if (authCubit.signupFormKey.currentState!
+                                .validate()) {
+                              authCubit.signUpWithEmailAndPassword();
+                            }
+                          }
+                        },
+                        text: AppStrings.signUp,
+                      ),
               ],
             ),
           ),
