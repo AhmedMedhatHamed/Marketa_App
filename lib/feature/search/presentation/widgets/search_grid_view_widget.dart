@@ -60,7 +60,7 @@ class SearchGridViewWidget extends StatelessWidget {
               children: [
                 Flexible(
                   child: Text(
-                    product.productPrice,
+                    '\$ ${product.productPrice}',
                     style: CustomTextStyles.poppins300styles16,
                   ),
                 ),
