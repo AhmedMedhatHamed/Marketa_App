@@ -12,6 +12,8 @@ import 'package:marketa/feature/product/presentation/view/product_details_view.d
 import 'package:marketa/feature/profile/presentation/views/inners/all_order_view.dart';
 import 'package:marketa/feature/profile/presentation/views/inners/viewed_recently_view.dart';
 import 'package:marketa/feature/profile/presentation/views/inners/wishlist_view.dart';
+import 'package:marketa/feature/search/presentation/cubit/search_cubit.dart';
+import 'package:marketa/feature/search/presentation/views/search_view.dart';
 import 'package:marketa/feature/splash/presentation/splash_view.dart';
 import 'package:marketa/root.dart';
 
@@ -28,6 +30,13 @@ final GoRouter router = GoRouter(
       builder: (context, state) => BlocProvider(
         create: (context) => AppCubit(),
         child: const RootView(),
+      ),
+    ),
+    GoRoute(
+      path: '/search',
+      builder: (context, state) => BlocProvider(
+        create: (context) => SearchCubit(),
+        child: const SearchView(),
       ),
     ),
     GoRoute(

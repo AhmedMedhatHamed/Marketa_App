@@ -33,17 +33,22 @@ class WishlistView extends StatelessWidget {
                     fontSize: 22.0,
                   ),
                   actions: [
-                    IconButton(onPressed: (){}, icon: Icon(IconlyBold.delete,color: AppColor.errorMsgColor,),),
+                    IconButton(
+                      onPressed: () {},
+                      icon: Icon(
+                        IconlyBold.delete,
+                        color: AppColor.errorMsgColor,
+                      ),
+                    ),
                   ],
                 ),
                 SliverGrid(
-                  delegate: SliverChildBuilderDelegate(
-                    childCount: 15,
-                        (context, index,)
-                    {
-                      return SearchGridViewWidget();
-                    },
-                  ),
+                  delegate: SliverChildBuilderDelegate(childCount: 15, (
+                    context,
+                    index,
+                  ) {
+                    return SearchGridViewWidget(index: index);
+                  }),
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 2,
                     mainAxisSpacing: 5,

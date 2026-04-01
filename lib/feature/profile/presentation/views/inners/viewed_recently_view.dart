@@ -35,7 +35,7 @@ class ViewedRecentlyView extends StatelessWidget {
               childCount: 15,
                   (context, index,)
               {
-                return SearchGridViewWidget();
+                return SearchGridViewWidget(index: index,);
               },
             ),
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(

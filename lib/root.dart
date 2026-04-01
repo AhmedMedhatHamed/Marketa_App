@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:iconly/iconly.dart';
 import 'package:marketa/core/utills/app_color.dart';
 import 'feature/cart/presentation/views/cart_view.dart';
 import 'feature/home/presentation/views/home_view.dart';
 import 'feature/profile/presentation/views/profile_view.dart';
+import 'feature/search/presentation/cubit/search_cubit.dart';
 import 'feature/search/presentation/views/search_view.dart';
 
 class RootView extends StatefulWidget {
@@ -16,6 +18,7 @@ class RootView extends StatefulWidget {
 class _RootViewState extends State<RootView> {
   final PageController pageController = PageController();
   int currentIndex = 0;
+
   final List<BottomNavigationBarItem> bottomNavigationBarItemList = [
     BottomNavigationBarItem(
       icon: Icon(IconlyLight.home),
@@ -28,9 +31,7 @@ class _RootViewState extends State<RootView> {
       label: 'Search',
     ),
     BottomNavigationBarItem(
-      icon: Badge(
-        label: Text('6',),
-          child: Icon(IconlyLight.bag_2)),
+      icon: Badge(label: Text('6'), child: Icon(IconlyLight.bag_2)),
       activeIcon: Icon(IconlyBold.bag_2),
       label: 'Cart',
     ),
@@ -60,7 +61,15 @@ class _RootViewState extends State<RootView> {
       body: PageView(
         controller: pageController,
         physics: const NeverScrollableScrollPhysics(),
-        children:  [HomeView(), SearchView(), CartView(), ProfileView()],
+        children: [
+          const HomeView(),
+          BlocProvider(
+            create: (_) => SearchCubit(),
+            child: const SearchView(),
+          ),
+          const CartView(),
+          const ProfileView(),
+        ],
       ),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: currentIndex,

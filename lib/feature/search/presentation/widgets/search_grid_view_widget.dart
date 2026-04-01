@@ -1,17 +1,24 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:marketa/core/utills/app_color.dart';
 import 'package:marketa/core/utills/text_styles.dart';
 import 'package:marketa/core/widgets/heart_button_widget.dart';
 import 'package:marketa/feature/product/presentation/view/product_details_view.dart';
+import 'package:marketa/feature/search/presentation/cubit/search_cubit.dart';
 
 class SearchGridViewWidget extends StatelessWidget {
-  const SearchGridViewWidget({super.key});
+  final int index;
+
+  const SearchGridViewWidget({super.key, required this.index});
 
   @override
   Widget build(BuildContext context) {
+    final searchCubit = context.read<SearchCubit>();
+    final product = searchCubit.localProds[index];
+
     return GestureDetector(
-      onTap: () async{
+      onTap: () async {
         await Navigator.push(
           context,
           MaterialPageRoute(builder: (context) => ProductDetailsView()),
@@ -24,36 +31,36 @@ class SearchGridViewWidget extends StatelessWidget {
             ClipRRect(
               borderRadius: BorderRadius.circular(30.0),
               child: Image.network(
-                'https://i.ibb.co/8r1Ny2n/20-Nike-Air-Force-1-07.png',
+                product.productImage,
                 width: double.infinity,
                 height: MediaQuery.of(context).size.height * 0.22,
                 fit: BoxFit.cover,
               ),
             ),
-            SizedBox(height: 10.0),
+            const SizedBox(height: 10.0),
+
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Flexible(
                   flex: 3,
                   child: Text(
-                    'Title' * 10,
+                    product.productTitle,
                     style: CustomTextStyles.poppins400styles18Black,
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
                   ),
                 ),
-                Flexible(
-                  child: HeartButtonWidget(),
-                ),
+                const Flexible(child: HeartButtonWidget()),
               ],
             ),
+
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Flexible(
                   child: Text(
-                    '1035 \$',
+                    product.productPrice,
                     style: CustomTextStyles.poppins300styles16,
                   ),
                 ),
@@ -62,11 +69,10 @@ class SearchGridViewWidget extends StatelessWidget {
                     borderRadius: BorderRadius.circular(16.0),
                     color: AppColor.primaryColor,
                     child: InkWell(
-                      splashColor: AppColor.secondColor,
                       borderRadius: BorderRadius.circular(16.0),
                       onTap: () {},
                       child: Padding(
-                        padding: EdgeInsets.all(8.0),
+                        padding: const EdgeInsets.all(8.0),
                         child: Icon(
                           CupertinoIcons.shopping_cart,
                           color: Theme.of(context).scaffoldBackgroundColor,
