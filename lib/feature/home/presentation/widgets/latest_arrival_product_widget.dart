@@ -17,7 +17,7 @@ class LatestArrivalProductWidget extends StatelessWidget {
             context,
             MaterialPageRoute(
               builder: (context) {
-                return ProductDetailsView();
+                return ProductDetailsView(productId: '',);
               },
             ),
           );

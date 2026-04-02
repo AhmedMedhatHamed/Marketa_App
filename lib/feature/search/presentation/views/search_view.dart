@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:marketa/core/utills/app_strings.dart';
 import 'package:marketa/core/widgets/app_bar_leading.dart';
 import 'package:marketa/core/widgets/custom_app_bar_text.dart';
-import 'package:marketa/feature/search/presentation/cubit/search_cubit.dart';
+import 'package:marketa/feature/product/presentation/cubit/product_cubit.dart';
 import 'package:marketa/feature/search/presentation/widgets/search_grid_view_widget.dart';
 import 'package:marketa/feature/search/presentation/widgets/search_text_field.dart';
 
@@ -17,9 +17,9 @@ class SearchView extends StatelessWidget {
         FocusScope.of(context).unfocus();
       },
       child: Scaffold(
-        body: BlocBuilder<SearchCubit, SearchState>(
+        body: BlocBuilder<ProductCubit, ProductState>(
           builder: (context, state) {
-            final searchCubit = context.read<SearchCubit>();
+            final productCubit = context.read<ProductCubit>();
             return CustomScrollView(
               slivers: [
                 SliverAppBar(
@@ -32,10 +32,12 @@ class SearchView extends StatelessWidget {
                 const SliverToBoxAdapter(child: SizedBox(height: 20.0)),
                 SliverGrid(
                   delegate: SliverChildBuilderDelegate(
-                    childCount: searchCubit.localProds.length,
+                    childCount: productCubit.localProds.length,
 
                     (context, index) {
-                      return SearchGridViewWidget(index: index);
+                      return SearchGridViewWidget(
+                        productId: productCubit.localProds[index].productId,
+                      );
                     },
                   ),
 

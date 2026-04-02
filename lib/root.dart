@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:iconly/iconly.dart';
 import 'package:marketa/core/utills/app_color.dart';
+import 'package:marketa/feature/product/presentation/cubit/product_cubit.dart';
 import 'feature/cart/presentation/views/cart_view.dart';
 import 'feature/home/presentation/views/home_view.dart';
 import 'feature/profile/presentation/views/profile_view.dart';
-import 'feature/search/presentation/cubit/search_cubit.dart';
 import 'feature/search/presentation/views/search_view.dart';
 
 class RootView extends StatefulWidget {
@@ -64,7 +64,7 @@ class _RootViewState extends State<RootView> {
         children: [
           const HomeView(),
           BlocProvider(
-            create: (_) => SearchCubit(),
+            create: (_) => ProductCubit(),
             child: const SearchView(),
           ),
           const CartView(),

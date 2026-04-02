@@ -3,8 +3,9 @@ import 'package:marketa/core/utills/app_strings.dart';
 import 'package:marketa/core/utills/text_styles.dart';
 
 class ProductDescription extends StatelessWidget {
-  const ProductDescription({super.key});
+  const ProductDescription({super.key, required this.categoryName, required this.description});
 
+  final String categoryName,description;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -19,7 +20,7 @@ class ProductDescription extends StatelessWidget {
                 style: CustomTextStyles.poppinsBoldStyles18Black,
               ),
               Text(
-                'In Phones',
+                'in $categoryName',
                 style: CustomTextStyles.poppins400styles18Black,
               ),
             ],
@@ -28,7 +29,7 @@ class ProductDescription extends StatelessWidget {
             height: 15.0,
           ),
           Text(
-            'description'*20,
+            description,
             style: CustomTextStyles.poppins300styles16,
           ),
         ],

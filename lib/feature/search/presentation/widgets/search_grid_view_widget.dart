@@ -1,27 +1,26 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:marketa/core/utills/app_color.dart';
 import 'package:marketa/core/utills/text_styles.dart';
 import 'package:marketa/core/widgets/heart_button_widget.dart';
-import 'package:marketa/feature/product/presentation/view/product_details_view.dart';
-import 'package:marketa/feature/search/presentation/cubit/search_cubit.dart';
+import 'package:marketa/feature/product/presentation/cubit/product_cubit.dart';
 
 class SearchGridViewWidget extends StatelessWidget {
-  final int index;
+  final String productId;
 
-  const SearchGridViewWidget({super.key, required this.index});
+  const SearchGridViewWidget({super.key, required this.productId});
 
   @override
   Widget build(BuildContext context) {
-    final searchCubit = context.read<SearchCubit>();
-    final product = searchCubit.localProds[index];
-
+    final productCubit = context.read<ProductCubit>();
+    final getCurrentProduct = productCubit.findByProductId(productId);
     return GestureDetector(
-      onTap: () async {
-        await Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => ProductDetailsView()),
+      onTap: () {
+        context.push(
+          '/productDetails',
+          extra: getCurrentProduct.productId,
         );
       },
       child: Padding(
@@ -31,21 +30,20 @@ class SearchGridViewWidget extends StatelessWidget {
             ClipRRect(
               borderRadius: BorderRadius.circular(30.0),
               child: Image.network(
-                product.productImage,
+                getCurrentProduct!.productImage,
                 width: double.infinity,
                 height: MediaQuery.of(context).size.height * 0.22,
                 fit: BoxFit.cover,
               ),
             ),
             const SizedBox(height: 10.0),
-
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Flexible(
                   flex: 3,
                   child: Text(
-                    product.productTitle,
+                    getCurrentProduct.productTitle,
                     style: CustomTextStyles.poppins400styles18Black,
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
@@ -54,13 +52,12 @@ class SearchGridViewWidget extends StatelessWidget {
                 const Flexible(child: HeartButtonWidget()),
               ],
             ),
-
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Flexible(
                   child: Text(
-                    '\$ ${product.productPrice}',
+                    '\$ ${getCurrentProduct.productPrice}',
                     style: CustomTextStyles.poppins300styles16,
                   ),
                 ),

@@ -47,7 +47,7 @@ class WishlistView extends StatelessWidget {
                     context,
                     index,
                   ) {
-                    return SearchGridViewWidget(index: index);
+                    return SearchGridViewWidget(productId: '',);
                   }),
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 2,
