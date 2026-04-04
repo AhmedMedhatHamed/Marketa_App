@@ -20,16 +20,15 @@ class _SearchViewState extends State<SearchView> {
   final TextEditingController searchController = TextEditingController();
 
   @override
-  void dispose() {
-    searchController.dispose();
-    super.dispose();
+  void initState() {
+    super.initState();
+    searchController.addListener(() => setState(() {}));
   }
 
   @override
-  void initState() {
-    super.initState();
-    // لما الـ controller يتغير يعمل setState عشان الـ UI يتحدث
-    searchController.addListener(() => setState(() {}));
+  void dispose() {
+    searchController.dispose();
+    super.dispose();
   }
 
   @override
@@ -40,15 +39,10 @@ class _SearchViewState extends State<SearchView> {
         body: BlocBuilder<ProductCubit, ProductState>(
           builder: (context, state) {
             final productCubit = context.read<ProductCubit>();
-
-            // لو بيكتب في السيرش يجيب نتايج السيرش
-            // لو فيه categoryName يجيب منتجاتها
-            // لو لا هذا ولا ذاك يجيب كل المنتجات
-            final products = searchController.text.isNotEmpty
-                ? productCubit.searchQuery(searchText: searchController.text)
-                : widget.categoryName != null
-                ? productCubit.findByCategory(categoryName: widget.categoryName!)
-                : productCubit.localProds;
+            final products = productCubit.searchQuery(
+              searchText: searchController.text,
+              categoryName: widget.categoryName,
+            );
 
             return CustomScrollView(
               slivers: [

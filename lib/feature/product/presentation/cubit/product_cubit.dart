@@ -28,15 +28,21 @@ class ProductCubit extends Cubit<ProductState> {
   }
 
 //////////////////////////////////////////////////////////////////
-  List<ProductModel> searchQuery({required String searchText}) {
-    List<ProductModel> searchList = localProds
+  List<ProductModel> searchQuery({
+    required String searchText,
+    String? categoryName,
+  }) {
+    final baseList = categoryName != null
+        ? findByCategory(categoryName: categoryName)
+        : localProds;
+
+    if (searchText.isEmpty) return baseList;
+
+    return baseList
         .where(
-          (element) => element.productTitle.toLowerCase().contains(
-            searchText.toLowerCase(),
-      ),
+          (e) => e.productTitle.toLowerCase().contains(searchText.toLowerCase()),
     )
         .toList();
-    return searchList;
   }
 /////////////////////////////////////////////////////////////////////
 
