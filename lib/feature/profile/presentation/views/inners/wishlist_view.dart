@@ -8,7 +8,7 @@ import 'package:marketa/core/utills/app_strings.dart';
 import 'package:marketa/core/widgets/custom_app_bar_text.dart';
 import 'package:marketa/core/widgets/empty_cart_bag.dart';
 import 'package:marketa/feature/product/presentation/cubit/product_cubit.dart';
-import 'package:marketa/feature/profile/presentation/cubit/wishlist_cubit.dart';
+import 'package:marketa/feature/profile/presentation/cubit/wishlist_cubit/wishlist_cubit.dart';
 import 'package:marketa/feature/search/presentation/widgets/search_grid_view_widget.dart';
 
 class WishlistView extends StatelessWidget {

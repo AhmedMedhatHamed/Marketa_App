@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:iconly/iconly.dart';
 import 'package:marketa/core/utills/app_color.dart';
-import 'package:marketa/feature/profile/presentation/cubit/wishlist_cubit.dart';
+import 'package:marketa/feature/profile/presentation/cubit/wishlist_cubit/wishlist_cubit.dart';
 
 class HeartButtonWidget extends StatelessWidget {
   const HeartButtonWidget({

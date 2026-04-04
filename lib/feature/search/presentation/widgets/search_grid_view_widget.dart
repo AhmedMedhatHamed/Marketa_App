@@ -7,6 +7,7 @@ import 'package:marketa/core/utills/text_styles.dart';
 import 'package:marketa/core/widgets/heart_button_widget.dart';
 import 'package:marketa/feature/cart/presentation/cubit/cart_cubit.dart';
 import 'package:marketa/feature/product/data/models/product_model.dart';
+import 'package:marketa/feature/profile/presentation/cubit/viewed_cubit/viewed_cubit.dart';
 
 class SearchGridViewWidget extends StatelessWidget {
   final ProductModel product;
@@ -15,8 +16,10 @@ class SearchGridViewWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final viewedCubit = context.read<ViewedCubit>();
     return GestureDetector(
       onTap: () {
+        viewedCubit.addProductInHistory(productId: product.productId);
         context.push('/productDetails', extra: product.productId);
       },
       child: Padding(

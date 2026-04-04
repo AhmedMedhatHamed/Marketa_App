@@ -7,6 +7,7 @@ import 'package:marketa/core/widgets/heart_button_widget.dart';
 import 'package:marketa/feature/cart/presentation/cubit/cart_cubit.dart';
 import 'package:marketa/feature/product/data/models/product_model.dart';
 import 'package:marketa/feature/product/presentation/view/product_details_view.dart';
+import 'package:marketa/feature/profile/presentation/cubit/viewed_cubit/viewed_cubit.dart';
 
 class LatestArrivalProductWidget extends StatelessWidget {
   const LatestArrivalProductWidget({super.key, required this.product});
@@ -15,10 +16,12 @@ class LatestArrivalProductWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final viewedCubit = context.read<ViewedCubit>();
     return SizedBox(
       width: 220,
       child: GestureDetector(
         onTap: () async {
+          viewedCubit.addProductInHistory(productId: product.productId);
           await Navigator.push(
             context,
             MaterialPageRoute(

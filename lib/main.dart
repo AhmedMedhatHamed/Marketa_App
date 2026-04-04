@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:marketa/feature/product/presentation/cubit/product_cubit.dart';
-import 'package:marketa/feature/profile/presentation/cubit/wishlist_cubit.dart';
+import 'package:marketa/feature/profile/presentation/cubit/viewed_cubit/viewed_cubit.dart';
+import 'package:marketa/feature/profile/presentation/cubit/wishlist_cubit/wishlist_cubit.dart';
 import 'app/marketa_app.dart';
 import 'core/app_function/auth_state_changes.dart';
 import 'core/database/cache_helper.dart';
@@ -34,6 +35,7 @@ void main() async {
         BlocProvider(create: (_) => CartCubit()),
         BlocProvider(create: (_) => ProductCubit()),
         BlocProvider(create: (_) => WishlistCubit()),
+        BlocProvider(create: (_) => ViewedCubit()),
       ],
         child: const MarketaApp()),
   );
