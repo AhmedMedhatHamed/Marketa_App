@@ -14,22 +14,30 @@ class CartCubit extends Cubit<CartState> {
     return cartItems;
   }
 
-  bool isProductInCart({required String productId}){
+  bool isProductInCart({required String productId}) {
     return cartItems.containsKey(productId);
   }
 
   Future<void> addProductToCart({required String productId}) async {
     cartItems.putIfAbsent(
       productId,
-      () => CartModel(
-        productId: productId,
-        cartId: Uuid().v4(),
-        quantity: 1,
-      ),
-
+      () => CartModel(productId: productId, cartId: Uuid().v4(), quantity: 1),
     );
     emit(AddProductToCartState());
   }
 
-
+  Future<void> updateProductQuantity({
+    required String productId,
+    required int quantity,
+  }) async {
+    cartItems.update(
+      productId,
+      (item) => CartModel(
+        productId: productId,
+        cartId: item.cartId,
+        quantity: quantity,
+      ),
+    );
+    emit(UpdateProductQuantityState());
+  }
 }

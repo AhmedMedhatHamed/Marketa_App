@@ -6,3 +6,5 @@ sealed class CartState {}
 final class CartInitial extends CartState {}
 
 class AddProductToCartState extends CartState {}
+class UpdateProductQuantityState extends CartState {}
+

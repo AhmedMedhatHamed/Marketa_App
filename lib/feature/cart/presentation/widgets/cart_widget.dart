@@ -31,7 +31,9 @@ class CartWidget extends StatelessWidget {
                       context,
                       MaterialPageRoute(
                         builder: (context) {
-                          return ProductDetailsView(productId: product.productId);
+                          return ProductDetailsView(
+                            productId: product.productId,
+                          );
                         },
                       ),
                     );
@@ -52,10 +54,7 @@ class CartWidget extends StatelessWidget {
                       children: [
                         SizedBox(
                           width: MediaQuery.of(context).size.width * 0.6,
-                          child: Text(
-                            product.productTitle,
-                            maxLines: 2,
-                          ),
+                          child: Text(product.productTitle, maxLines: 2),
                         ),
                         Column(
                           children: [
@@ -81,11 +80,12 @@ class CartWidget extends StatelessWidget {
                           style: CustomTextStyles.poppins300styles16,
                         ),
                         CustomOutlinedButton(
-                          text: 'Qty: ${cartModel.quantity}', // ✅ من الـ parameter
+                          text: 'Qty: ${cartModel.quantity}',
                           onPressed: () {
                             showModalBottomSheet(
-                              backgroundColor:
-                              Theme.of(context).scaffoldBackgroundColor,
+                              backgroundColor: Theme.of(
+                                context,
+                              ).scaffoldBackgroundColor,
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadiusGeometry.only(
                                   topRight: Radius.circular(20.0),
@@ -94,7 +94,9 @@ class CartWidget extends StatelessWidget {
                               ),
                               context: context,
                               builder: (context) {
-                                return QuantityWidget();
+                                return QuantityWidget(
+                                  productId: cartModel.productId,
+                                );
                               },
                             );
                           },

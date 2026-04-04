@@ -45,25 +45,37 @@ class CartView extends StatelessWidget {
                 ),
               ],
             ),
-      body: BlocBuilder<CartCubit, CartState>(
-        builder: (context, state) {
-          final cartCubit = context.read<CartCubit>();
-          final cartList = cartCubit.getCartItems.values.toList();
-          return ListView.builder(
-            itemCount: cartList.length,
-            physics: const BouncingScrollPhysics(),
-            itemBuilder: (context, index) {
-              final cartModel = cartList[index];
-              final product = context.read<ProductCubit>().findByProductId(cartModel.productId);
-              if (product == null) return const SizedBox.shrink();
-              return CartWidget(
-                product: product,
-                cartModel: cartModel,
-              );
-            },
-          );
-        },
-      ),
+            body: BlocBuilder<CartCubit, CartState>(
+              builder: (context, state) {
+                final cartCubit = context.read<CartCubit>();
+                final cartList = cartCubit.getCartItems.values
+                    .toList()
+                    .reversed
+                    .toList();
+                return Column(
+                  children: [
+                    Expanded(
+                      child: ListView.builder(
+                        itemCount: cartList.length,
+                        physics: const BouncingScrollPhysics(),
+                        itemBuilder: (context, index) {
+                          final cartModel = cartList[index];
+                          final product = context
+                              .read<ProductCubit>()
+                              .findByProductId(cartModel.productId);
+                          if (product == null) return const SizedBox.shrink();
+                          return CartWidget(
+                            product: product,
+                            cartModel: cartModel,
+                          );
+                        },
+                      ),
+                    ),
+                    SizedBox(height: 100.0,),
+                  ],
+                );
+              },
+            ),
             bottomSheet: CartBottomSheet(),
           );
   }
