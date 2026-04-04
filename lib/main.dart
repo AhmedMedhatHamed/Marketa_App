@@ -1,9 +1,11 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'app/marketa_app.dart';
 import 'core/app_function/auth_state_changes.dart';
 import 'core/database/cache_helper.dart';
+import 'feature/cart/presentation/cubit/cart_cubit.dart';
 import 'firebase_options.dart';
 
 void main() async {
@@ -25,7 +27,11 @@ void main() async {
   );
 
   runApp(
-    const MarketaApp(),
+    MultiBlocProvider(
+      providers: [
+        BlocProvider(create: (_) => CartCubit()),
+      ],
+        child: const MarketaApp()),
   );
 }
 

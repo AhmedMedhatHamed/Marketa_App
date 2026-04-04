@@ -1,9 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:marketa/core/utills/app_color.dart';
 import 'package:marketa/core/utills/text_styles.dart';
 import 'package:marketa/core/widgets/heart_button_widget.dart';
+import 'package:marketa/feature/cart/presentation/cubit/cart_cubit.dart';
 import 'package:marketa/feature/product/data/models/product_model.dart';
 
 class SearchGridViewWidget extends StatelessWidget {
@@ -15,10 +17,7 @@ class SearchGridViewWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        context.push(
-          '/productDetails',
-          extra: product.productId,
-        );
+        context.push('/productDetails', extra: product.productId);
       },
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20.0),
@@ -46,7 +45,7 @@ class SearchGridViewWidget extends StatelessWidget {
                     overflow: TextOverflow.ellipsis,
                   ),
                 ),
-                const Flexible(child: HeartButtonWidget()),
+                Flexible(child: HeartButtonWidget()),
               ],
             ),
             Row(
@@ -58,23 +57,38 @@ class SearchGridViewWidget extends StatelessWidget {
                     style: CustomTextStyles.poppins300styles16,
                   ),
                 ),
-                Flexible(
-                  child: Material(
-                    borderRadius: BorderRadius.circular(16.0),
-                    color: AppColor.primaryColor,
-                    child: InkWell(
-                      borderRadius: BorderRadius.circular(16.0),
-                      onTap: () {},
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Icon(
-                          CupertinoIcons.shopping_cart,
-                          color: Theme.of(context).scaffoldBackgroundColor,
-                          size: 18.0,
+                BlocBuilder<CartCubit, CartState>(
+                  builder: (context, state) {
+                    final cartCubit = context.read<CartCubit>();
+                    final isInCart = cartCubit.isProductInCart(
+                      productId: product.productId,
+                    );
+                    return Flexible(
+                      child: Material(
+                        borderRadius: BorderRadius.circular(16.0),
+                        color: AppColor.primaryColor,
+                        child: InkWell(
+                          borderRadius: BorderRadius.circular(16.0),
+                          onTap: () async {
+                            if (isInCart) return;
+                            await cartCubit.addProductToCart(
+                              productId: product.productId,
+                            );
+                          },
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Icon(
+                              isInCart
+                                  ? CupertinoIcons.checkmark_alt
+                                  : CupertinoIcons.shopping_cart,
+                              color: Theme.of(context).scaffoldBackgroundColor,
+                              size: 18.0,
+                            ),
+                          ),
                         ),
                       ),
-                    ),
-                  ),
+                    );
+                  },
                 ),
               ],
             ),
