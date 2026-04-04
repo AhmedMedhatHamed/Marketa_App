@@ -2,12 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:marketa/core/utills/app_color.dart';
 import 'package:marketa/core/utills/text_styles.dart';
 import 'package:marketa/core/widgets/heart_button_widget.dart';
-import 'package:marketa/feature/cart/presentation/widgets/custom_outlined_button.dart';
+import 'package:marketa/feature/cart/data/models/cart_model.dart';
 import 'package:marketa/feature/cart/presentation/widgets/quantity_widget.dart';
+import 'package:marketa/feature/product/data/models/product_model.dart';
 import 'package:marketa/feature/product/presentation/view/product_details_view.dart';
 
+import 'custom_outlined_button.dart';
+
 class CartWidget extends StatelessWidget {
-  const CartWidget({super.key});
+  const CartWidget({super.key, required this.product, required this.cartModel});
+
+  final ProductModel product;
+  final CartModel cartModel;
 
   @override
   Widget build(BuildContext context) {
@@ -25,15 +31,16 @@ class CartWidget extends StatelessWidget {
                       context,
                       MaterialPageRoute(
                         builder: (context) {
-                          return ProductDetailsView(productId: '',);
+                          return ProductDetailsView(productId: product.productId);
                         },
                       ),
                     );
                   },
                   child: Image.network(
-                    'https://i.ibb.co/8r1Ny2n/20-Nike-Air-Force-1-07.png',
+                    product.productImage,
                     height: MediaQuery.of(context).size.height * 0.2,
                     width: MediaQuery.of(context).size.height * 0.2,
+                    fit: BoxFit.cover,
                   ),
                 ),
               ),
@@ -45,7 +52,10 @@ class CartWidget extends StatelessWidget {
                       children: [
                         SizedBox(
                           width: MediaQuery.of(context).size.width * 0.6,
-                          child: Text('Title' * 10, maxLines: 2),
+                          child: Text(
+                            product.productTitle,
+                            maxLines: 2,
+                          ),
                         ),
                         Column(
                           children: [
@@ -67,16 +77,15 @@ class CartWidget extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          "16\$",
+                          '\$ ${product.productPrice}',
                           style: CustomTextStyles.poppins300styles16,
                         ),
                         CustomOutlinedButton(
-                          text: 'Qty: 1',
+                          text: 'Qty: ${cartModel.quantity}', // ✅ من الـ parameter
                           onPressed: () {
                             showModalBottomSheet(
-                              backgroundColor: Theme.of(
-                                context,
-                              ).scaffoldBackgroundColor,
+                              backgroundColor:
+                              Theme.of(context).scaffoldBackgroundColor,
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadiusGeometry.only(
                                   topRight: Radius.circular(20.0),

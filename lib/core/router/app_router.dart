@@ -8,7 +8,6 @@ import 'package:marketa/feature/auth/presenatation/views/sign_up_view.dart';
 import 'package:marketa/feature/home/presentation/views/home_view.dart';
 import 'package:marketa/feature/on_boarding/presentation/cubit/on_boarding_cubit.dart';
 import 'package:marketa/feature/on_boarding/presentation/views/on_boarding_view.dart';
-import 'package:marketa/feature/product/presentation/cubit/product_cubit.dart';
 import 'package:marketa/feature/product/presentation/view/product_details_view.dart';
 import 'package:marketa/feature/profile/presentation/views/inners/all_order_view.dart';
 import 'package:marketa/feature/profile/presentation/views/inners/viewed_recently_view.dart';
@@ -36,10 +35,7 @@ final GoRouter router = GoRouter(
       path: '/search',
       builder: (context, state) {
         final categoryName = state.extra as String?;
-        return BlocProvider(
-          create: (context) => ProductCubit(),
-          child: SearchView(categoryName: categoryName,),
-        );
+        return SearchView(categoryName: categoryName,);
       },
     ),
     GoRoute(
@@ -66,10 +62,7 @@ final GoRouter router = GoRouter(
       path: '/productDetails',
       builder: (context, state) {
         final productId = state.extra as String;
-        return BlocProvider(
-          create: (context) => ProductCubit(),
-          child: ProductDetailsView(productId: productId),
-        );
+        return ProductDetailsView(productId: productId);
       },
     ),
     GoRoute(

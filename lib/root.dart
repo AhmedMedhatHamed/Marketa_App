@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:iconly/iconly.dart';
 import 'package:marketa/core/utills/app_color.dart';
-import 'package:marketa/feature/product/presentation/cubit/product_cubit.dart';
+import 'feature/cart/presentation/cubit/cart_cubit.dart';
 import 'feature/cart/presentation/views/cart_view.dart';
 import 'feature/home/presentation/views/home_view.dart';
 import 'feature/profile/presentation/views/profile_view.dart';
@@ -18,29 +18,6 @@ class RootView extends StatefulWidget {
 class _RootViewState extends State<RootView> {
   final PageController pageController = PageController();
   int currentIndex = 0;
-
-  final List<BottomNavigationBarItem> bottomNavigationBarItemList = [
-    BottomNavigationBarItem(
-      icon: Icon(IconlyLight.home),
-      activeIcon: Icon(IconlyBold.home),
-      label: 'Home',
-    ),
-    BottomNavigationBarItem(
-      icon: Icon(IconlyLight.search),
-      activeIcon: Icon(IconlyBold.search),
-      label: 'Search',
-    ),
-    BottomNavigationBarItem(
-      icon: Badge(label: Text('6'), child: Icon(IconlyLight.bag_2)),
-      activeIcon: Icon(IconlyBold.bag_2),
-      label: 'Cart',
-    ),
-    BottomNavigationBarItem(
-      icon: Icon(IconlyLight.profile),
-      activeIcon: Icon(IconlyBold.profile),
-      label: 'Profile',
-    ),
-  ];
 
   @override
   void dispose() {
@@ -61,23 +38,49 @@ class _RootViewState extends State<RootView> {
       body: PageView(
         controller: pageController,
         physics: const NeverScrollableScrollPhysics(),
-        children: [
-          const HomeView(),
-          BlocProvider(
-            create: (_) => ProductCubit(),
-            child: const SearchView(),
-          ),
-          const CartView(),
-          const ProfileView(),
+        children: const [
+          HomeView(),
+          SearchView(),
+          CartView(),
+          ProfileView(),
         ],
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: currentIndex,
-        selectedItemColor: AppColor.primaryColor,
-        onTap: changePage,
-        type: BottomNavigationBarType.fixed,
-        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-        items: bottomNavigationBarItemList,
+      bottomNavigationBar: BlocBuilder<CartCubit, CartState>(
+        builder: (context, state) {
+          final cartCubit = context.read<CartCubit>();
+          return BottomNavigationBar(
+            currentIndex: currentIndex,
+            selectedItemColor: AppColor.primaryColor,
+            onTap: changePage,
+            type: BottomNavigationBarType.fixed,
+            backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+            items: [
+              const BottomNavigationBarItem(
+                icon: Icon(IconlyLight.home),
+                activeIcon: Icon(IconlyBold.home),
+                label: 'Home',
+              ),
+              const BottomNavigationBarItem(
+                icon: Icon(IconlyLight.search),
+                activeIcon: Icon(IconlyBold.search),
+                label: 'Search',
+              ),
+              BottomNavigationBarItem(
+                icon: Badge(
+                  label: Text(cartCubit.getCartItems.length.toString()),
+                  child: const Icon(IconlyLight.bag_2),
+                ),
+                activeIcon: const Icon(IconlyBold.bag_2),
+                label: 'Cart',
+              ),
+              const BottomNavigationBarItem(
+                icon: Icon(IconlyLight.profile),
+                activeIcon: Icon(IconlyBold.profile),
+                label: 'Profile',
+              ),
+            ],
+          );
+        },
       ),
     );
   }
