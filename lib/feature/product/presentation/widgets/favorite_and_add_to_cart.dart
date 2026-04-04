@@ -22,7 +22,10 @@ class FavoriteAndAddToCartWidget extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              HeartButtonWidget(color: AppColor.secondColor),
+              HeartButtonWidget(
+                productId: productId,
+                  color: AppColor.secondColor,
+              ),
               const SizedBox(width: 10.0),
               Expanded(
                 child: CustomButtonWithIcon(

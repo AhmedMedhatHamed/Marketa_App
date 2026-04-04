@@ -45,7 +45,9 @@ class SearchGridViewWidget extends StatelessWidget {
                     overflow: TextOverflow.ellipsis,
                   ),
                 ),
-                Flexible(child: HeartButtonWidget()),
+                Flexible(
+                  child: HeartButtonWidget(productId: product.productId),
+                ),
               ],
             ),
             Row(

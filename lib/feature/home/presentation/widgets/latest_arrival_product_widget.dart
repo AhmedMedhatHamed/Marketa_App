@@ -54,7 +54,11 @@ class LatestArrivalProductWidget extends StatelessWidget {
                   ),
                   Row(
                     children: [
-                      HeartButtonWidget(size: 18.0, color: Colors.transparent),
+                      HeartButtonWidget(
+                        productId: product.productId,
+                          size: 18.0,
+                        color: Colors.transparent,
+                      ),
                       BlocBuilder<CartCubit, CartState>(
                         builder: (context, state) {
                           final cartCubit = context.read<CartCubit>();

@@ -1,19 +1,42 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:iconly/iconly.dart';
+import 'package:marketa/core/utills/app_color.dart';
+import 'package:marketa/feature/profile/presentation/cubit/wishlist_cubit.dart';
 
 class HeartButtonWidget extends StatelessWidget {
-  const HeartButtonWidget({super.key, this.color, this.size, this.iconColor});
+  const HeartButtonWidget({
+    super.key,
+    this.color,
+    this.size,
+    this.iconColor,
+    required this.productId,
+  });
 
   final Color? color, iconColor;
   final double? size;
+  final String productId;
+
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(color: color, shape: BoxShape.circle),
-      child: IconButton(
-        onPressed: () {},
-        icon: Icon(IconlyLight.heart, size: size, color: iconColor),
-      ),
+    return BlocBuilder<WishlistCubit, WishlistState>(
+      builder: (context, state) {
+        final wishlistCubit = context.read<WishlistCubit>();
+        final isInWishlist = wishlistCubit.isProductInWishlist(productId: productId);
+        return Container(
+          decoration: BoxDecoration(color: color, shape: BoxShape.circle),
+          child: IconButton(
+            onPressed: () {
+              wishlistCubit.addProductInWishlist(productId: productId);
+            },
+            icon: Icon(
+              isInWishlist ? IconlyBold.heart : IconlyLight.heart,
+              size: size,
+              color: isInWishlist ? AppColor.primaryColor : Colors.black,
+            ),
+          ),
+        );
+      },
     );
   }
 }
