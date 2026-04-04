@@ -40,7 +40,9 @@ class CartView extends StatelessWidget {
               title: CustomAppBarText(text: AppStrings.shoppingBasket),
               actions: [
                 IconButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    cartCubit.clearAllCart();
+                  },
                   icon: Icon(IconlyBold.delete, color: AppColor.errorMsgColor),
                 ),
               ],

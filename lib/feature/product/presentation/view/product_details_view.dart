@@ -36,7 +36,11 @@ class ProductDetailsView extends StatelessWidget {
             ),
           ),
           SliverToBoxAdapter(child: SizedBox(height: 25.0)),
-          SliverToBoxAdapter(child: FavoriteAndAddToCartWidget()),
+          SliverToBoxAdapter(
+            child: FavoriteAndAddToCartWidget(
+              productId: getCurrentProduct.productId,
+            ),
+          ),
           SliverToBoxAdapter(child: SizedBox(height: 25.0)),
           SliverToBoxAdapter(
             child: ProductDescription(

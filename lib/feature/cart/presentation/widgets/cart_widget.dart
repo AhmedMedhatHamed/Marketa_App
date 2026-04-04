@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:marketa/core/utills/app_color.dart';
 import 'package:marketa/core/utills/text_styles.dart';
 import 'package:marketa/core/widgets/heart_button_widget.dart';
 import 'package:marketa/feature/cart/data/models/cart_model.dart';
+import 'package:marketa/feature/cart/presentation/cubit/cart_cubit.dart';
 import 'package:marketa/feature/cart/presentation/widgets/quantity_widget.dart';
 import 'package:marketa/feature/product/data/models/product_model.dart';
 import 'package:marketa/feature/product/presentation/view/product_details_view.dart';
@@ -17,6 +19,8 @@ class CartWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final cartCubit = context.read<CartCubit>();
+
     return FittedBox(
       child: IntrinsicWidth(
         child: Padding(
@@ -59,7 +63,9 @@ class CartWidget extends StatelessWidget {
                         Column(
                           children: [
                             IconButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                cartCubit.removeProduct(productId: product.productId);
+                              },
                               icon: Icon(
                                 Icons.clear,
                                 color: AppColor.errorMsgColor,
