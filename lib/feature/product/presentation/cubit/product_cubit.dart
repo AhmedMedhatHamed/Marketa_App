@@ -7,6 +7,7 @@ part 'product_state.dart';
 class ProductCubit extends Cubit<ProductState> {
   ProductCubit() : super(ProductInitial());
 
+//////////////////////////////////////////////////////////////////
   ProductModel? findByProductId(String productId) {
     if (localProds.where((element) => element.productId == productId).isEmpty) {
       return null;
@@ -14,6 +15,7 @@ class ProductCubit extends Cubit<ProductState> {
     return localProds.firstWhere((element) => element.productId == productId);
   }
 
+//////////////////////////////////////////////////////////////////
   List<ProductModel> findByCategory({required String categoryName}) {
     List<ProductModel> ctgList = localProds
         .where(
@@ -24,6 +26,19 @@ class ProductCubit extends Cubit<ProductState> {
         .toList();
     return ctgList;
   }
+
+//////////////////////////////////////////////////////////////////
+  List<ProductModel> searchQuery({required String searchText}) {
+    List<ProductModel> searchList = localProds
+        .where(
+          (element) => element.productTitle.toLowerCase().contains(
+            searchText.toLowerCase(),
+      ),
+    )
+        .toList();
+    return searchList;
+  }
+/////////////////////////////////////////////////////////////////////
 
   List<ProductModel> localProds = [
     // Phones

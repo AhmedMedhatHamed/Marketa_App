@@ -7,24 +7,47 @@ import 'package:marketa/feature/product/presentation/cubit/product_cubit.dart';
 import 'package:marketa/feature/search/presentation/widgets/search_grid_view_widget.dart';
 import 'package:marketa/feature/search/presentation/widgets/search_text_field.dart';
 
-class SearchView extends StatelessWidget {
+class SearchView extends StatefulWidget {
   final String? categoryName;
+
   const SearchView({super.key, this.categoryName});
+
+  @override
+  State<SearchView> createState() => _SearchViewState();
+}
+
+class _SearchViewState extends State<SearchView> {
+  final TextEditingController searchController = TextEditingController();
+
+  @override
+  void dispose() {
+    searchController.dispose();
+    super.dispose();
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    // لما الـ controller يتغير يعمل setState عشان الـ UI يتحدث
+    searchController.addListener(() => setState(() {}));
+  }
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-        FocusScope.of(context).unfocus();
-      },
+      onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
         body: BlocBuilder<ProductCubit, ProductState>(
           builder: (context, state) {
             final productCubit = context.read<ProductCubit>();
 
-            // لو فيه categoryName هيجيب منتجاتها بس، غير كده كل المنتجات
-            final products = categoryName != null
-                ? productCubit.findByCategory(categoryName: categoryName!)
+            // لو بيكتب في السيرش يجيب نتايج السيرش
+            // لو فيه categoryName يجيب منتجاتها
+            // لو لا هذا ولا ذاك يجيب كل المنتجات
+            final products = searchController.text.isNotEmpty
+                ? productCubit.searchQuery(searchText: searchController.text)
+                : widget.categoryName != null
+                ? productCubit.findByCategory(categoryName: widget.categoryName!)
                 : productCubit.localProds;
 
             return CustomScrollView(
@@ -32,20 +55,20 @@ class SearchView extends StatelessWidget {
                 SliverAppBar(
                   centerTitle: true,
                   title: CustomAppBarText(
-                    text: categoryName ?? AppStrings.searchAppBarName,
+                    text: widget.categoryName ?? AppStrings.searchAppBarName,
                   ),
                   leading: AppBarLeading(),
                 ),
                 const SliverToBoxAdapter(child: SizedBox(height: 20.0)),
-                const SliverToBoxAdapter(child: SearchTextField()),
+                SliverToBoxAdapter(
+                  child: SearchTextField(searchController: searchController),
+                ),
                 const SliverToBoxAdapter(child: SizedBox(height: 20.0)),
                 SliverGrid(
                   delegate: SliverChildBuilderDelegate(
                     childCount: products.length,
                         (context, index) {
-                      return SearchGridViewWidget(
-                        product: products[index],
-                      );
+                      return SearchGridViewWidget(product: products[index]);
                     },
                   ),
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(

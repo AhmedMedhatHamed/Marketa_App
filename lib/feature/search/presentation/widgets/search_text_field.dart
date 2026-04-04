@@ -3,21 +3,10 @@ import 'package:iconly/iconly.dart';
 import 'package:marketa/core/utills/app_color.dart';
 import 'package:marketa/feature/auth/presenatation/widgets/custom_text_field.dart';
 
-class SearchTextField extends StatefulWidget {
-  const SearchTextField({super.key});
+class SearchTextField extends StatelessWidget {
+  final TextEditingController searchController;
 
-  @override
-  State<SearchTextField> createState() => _SearchTextFieldState();
-}
-
-class _SearchTextFieldState extends State<SearchTextField> {
-  final TextEditingController searchController = TextEditingController();
-
-  @override
-  void dispose() {
-    searchController.dispose();
-    super.dispose();
-  }
+  const SearchTextField({super.key, required this.searchController});
 
   @override
   Widget build(BuildContext context) {
