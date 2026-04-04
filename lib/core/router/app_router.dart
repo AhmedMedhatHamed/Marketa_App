@@ -34,10 +34,13 @@ final GoRouter router = GoRouter(
     ),
     GoRoute(
       path: '/search',
-      builder: (context, state) => BlocProvider(
-        create: (context) => ProductCubit(),
-        child: const SearchView(),
-      ),
+      builder: (context, state) {
+        final categoryName = state.extra as String?;
+        return BlocProvider(
+          create: (context) => ProductCubit(),
+          child: SearchView(categoryName: categoryName,),
+        );
+      },
     ),
     GoRoute(
       path: '/loginView',

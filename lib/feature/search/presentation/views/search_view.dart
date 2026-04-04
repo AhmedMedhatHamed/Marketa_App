@@ -8,7 +8,8 @@ import 'package:marketa/feature/search/presentation/widgets/search_grid_view_wid
 import 'package:marketa/feature/search/presentation/widgets/search_text_field.dart';
 
 class SearchView extends StatelessWidget {
-  const SearchView({super.key});
+  final String? categoryName;
+  const SearchView({super.key, this.categoryName});
 
   @override
   Widget build(BuildContext context) {
@@ -20,11 +21,19 @@ class SearchView extends StatelessWidget {
         body: BlocBuilder<ProductCubit, ProductState>(
           builder: (context, state) {
             final productCubit = context.read<ProductCubit>();
+
+            // لو فيه categoryName هيجيب منتجاتها بس، غير كده كل المنتجات
+            final products = categoryName != null
+                ? productCubit.findByCategory(categoryName: categoryName!)
+                : productCubit.localProds;
+
             return CustomScrollView(
               slivers: [
                 SliverAppBar(
                   centerTitle: true,
-                  title: CustomAppBarText(text: AppStrings.searchAppBarName),
+                  title: CustomAppBarText(
+                    text: categoryName ?? AppStrings.searchAppBarName,
+                  ),
                   leading: AppBarLeading(),
                 ),
                 const SliverToBoxAdapter(child: SizedBox(height: 20.0)),
@@ -32,15 +41,13 @@ class SearchView extends StatelessWidget {
                 const SliverToBoxAdapter(child: SizedBox(height: 20.0)),
                 SliverGrid(
                   delegate: SliverChildBuilderDelegate(
-                    childCount: productCubit.localProds.length,
-
-                    (context, index) {
+                    childCount: products.length,
+                        (context, index) {
                       return SearchGridViewWidget(
-                        productId: productCubit.localProds[index].productId,
+                        product: products[index],
                       );
                     },
                   ),
-
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 2,
                     mainAxisSpacing: 5,

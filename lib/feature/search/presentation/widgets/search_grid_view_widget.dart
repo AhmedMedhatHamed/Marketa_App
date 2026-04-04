@@ -1,26 +1,23 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:marketa/core/utills/app_color.dart';
 import 'package:marketa/core/utills/text_styles.dart';
 import 'package:marketa/core/widgets/heart_button_widget.dart';
-import 'package:marketa/feature/product/presentation/cubit/product_cubit.dart';
+import 'package:marketa/feature/product/data/models/product_model.dart';
 
 class SearchGridViewWidget extends StatelessWidget {
-  final String productId;
+  final ProductModel product;
 
-  const SearchGridViewWidget({super.key, required this.productId});
+  const SearchGridViewWidget({super.key, required this.product});
 
   @override
   Widget build(BuildContext context) {
-    final productCubit = context.read<ProductCubit>();
-    final getCurrentProduct = productCubit.findByProductId(productId);
     return GestureDetector(
       onTap: () {
         context.push(
           '/productDetails',
-          extra: getCurrentProduct.productId,
+          extra: product.productId,
         );
       },
       child: Padding(
@@ -30,7 +27,7 @@ class SearchGridViewWidget extends StatelessWidget {
             ClipRRect(
               borderRadius: BorderRadius.circular(30.0),
               child: Image.network(
-                getCurrentProduct!.productImage,
+                product.productImage,
                 width: double.infinity,
                 height: MediaQuery.of(context).size.height * 0.22,
                 fit: BoxFit.cover,
@@ -43,7 +40,7 @@ class SearchGridViewWidget extends StatelessWidget {
                 Flexible(
                   flex: 3,
                   child: Text(
-                    getCurrentProduct.productTitle,
+                    product.productTitle,
                     style: CustomTextStyles.poppins400styles18Black,
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
@@ -57,7 +54,7 @@ class SearchGridViewWidget extends StatelessWidget {
               children: [
                 Flexible(
                   child: Text(
-                    '\$ ${getCurrentProduct.productPrice}',
+                    '\$ ${product.productPrice}',
                     style: CustomTextStyles.poppins300styles16,
                   ),
                 ),

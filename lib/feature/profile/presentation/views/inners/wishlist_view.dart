@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:iconly/iconly.dart';
 import 'package:marketa/core/utills/app_color.dart';
 import 'package:marketa/core/utills/app_images.dart';
 import 'package:marketa/core/utills/app_strings.dart';
 import 'package:marketa/core/widgets/custom_app_bar_text.dart';
 import 'package:marketa/core/widgets/empty_cart_bag.dart';
+import 'package:marketa/feature/product/presentation/cubit/product_cubit.dart';
 import 'package:marketa/feature/search/presentation/widgets/search_grid_view_widget.dart';
 
 class WishlistView extends StatelessWidget {
@@ -13,6 +15,7 @@ class WishlistView extends StatelessWidget {
   final bool isEmpty = false;
   @override
   Widget build(BuildContext context) {
+    final productCubit = context.read<ProductCubit>();
     return isEmpty
         ? Scaffold(
             body: EmptyCartBag(
@@ -47,7 +50,7 @@ class WishlistView extends StatelessWidget {
                     context,
                     index,
                   ) {
-                    return SearchGridViewWidget(productId: '',);
+                    return SearchGridViewWidget(product:productCubit.localProds[index],);
                   }),
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 2,

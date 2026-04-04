@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:marketa/core/utills/app_images.dart';
 import 'package:marketa/core/utills/app_strings.dart';
 import 'package:marketa/core/widgets/custom_app_bar_text.dart';
 import 'package:marketa/core/widgets/empty_cart_bag.dart';
+import 'package:marketa/feature/product/presentation/cubit/product_cubit.dart';
 import 'package:marketa/feature/search/presentation/widgets/search_grid_view_widget.dart';
 
 class ViewedRecentlyView extends StatelessWidget {
@@ -11,6 +13,7 @@ class ViewedRecentlyView extends StatelessWidget {
   final bool isEmpty = true;
   @override
   Widget build(BuildContext context) {
+    final productCubit = context.read<ProductCubit>();
     return isEmpty
         ? Scaffold(
       body: EmptyCartBag(
@@ -35,7 +38,7 @@ class ViewedRecentlyView extends StatelessWidget {
               childCount: 15,
                   (context, index,)
               {
-                return SearchGridViewWidget(productId: '',);
+                return SearchGridViewWidget(product: productCubit.localProds[index]);
               },
             ),
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
