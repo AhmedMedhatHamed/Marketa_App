@@ -1,5 +1,8 @@
+import 'dart:io';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -16,11 +19,16 @@ class AuthCubit extends Cubit<AuthState> {
   String? password;
   String? firstName;
   String? lastName;
+  List? userWish;
+  List? userCart;
+  Timestamp? createdAt;
+  ////////////////////
   GlobalKey<FormState> signupFormKey = GlobalKey();
   bool? isCheckBoxActive = false;
   bool? isObscure = true;
   GlobalKey<FormState> signInFormKey = GlobalKey();
   GlobalKey<FormState> forgetPasswordFormKey = GlobalKey();
+//////////////////////////////////////////////////////////////
 
   void updateStateOfCheckBox(dynamic newValue) {
     isCheckBoxActive = newValue;
@@ -38,6 +46,10 @@ class AuthCubit extends Cubit<AuthState> {
       await FirebaseAuth.instance.createUserWithEmailAndPassword(
         email: emailAddress!,
         password: password!,
+      );
+
+      await FirebaseAuth.instance.currentUser!.updateDisplayName(
+        '$firstName $lastName',
       );
 
       await addUserProfile();
@@ -96,13 +108,39 @@ class AuthCubit extends Cubit<AuthState> {
   }
 
   Future<void> addUserProfile() async {
-    CollectionReference users = FirebaseFirestore.instance.collection("users");
-    await users.add({
-      "email": emailAddress,
-      "first_name": firstName,
-      "last_name": lastName,
+    final user = FirebaseAuth.instance.currentUser;
+
+    await FirebaseFirestore.instance
+        .collection("users")
+        .doc(user!.uid)
+        .set({
+      "userId": user.uid,
+      "email": emailAddress ?? '',
+      "first_name": firstName ?? '',
+      "last_name": lastName ?? '',
+      "createdAt": Timestamp.now(),
+      "userCart": [],
+      "userWish": [],
+      "userImage": pickedImage,
     });
   }
+
+
+  Future<String> uploadUserImage() async {
+    if (pickedImage == null) return '';
+
+    final ref = FirebaseStorage.instance
+        .ref()
+        .child('userImages')
+        .child('${FirebaseAuth.instance.currentUser!.uid}.jpg');
+
+    await ref.putFile(File(pickedImage!.path));
+
+    final imageUrl = await ref.getDownloadURL();
+
+    return imageUrl;
+  }
+
 
   Future<void> localPickImage(BuildContext context) async {
     ImagePicker imagePicker = ImagePicker();
@@ -129,4 +167,33 @@ class AuthCubit extends Cubit<AuthState> {
       },
     );
   }
+
+  // Future<void> signInWithGoogle() async {
+  //   emit(SignInLoadingState());
+  //   try {
+  //     final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+  //     if (googleUser == null) {
+  //       emit(SignInErrorState('Cancelled'));
+  //       return;
+  //     }
+  //
+  //     final GoogleSignInAuthentication googleAuth =
+  //         await googleUser.authentication;
+  //
+  //     final credential = GoogleAuthProvider.credential(
+  //       accessToken: googleAuth.accessToken,
+  //       idToken: googleAuth.idToken,
+  //     );
+  //
+  //     await addUserProfile();
+  //     await verifiedEmail();
+  //
+  //     await FirebaseAuth.instance.signInWithCredential(credential);
+  //     emit(SignInSuccessState());
+  //   } catch (e) {
+  //     emit(SignInErrorState(e.toString()));
+  //   }
+  // }
+
+
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:marketa/core/utills/app_color.dart';
 import 'package:marketa/core/widgets/custom_button.dart';
 import 'google_button.dart';
@@ -18,7 +19,9 @@ class GoogleRowButtons extends StatelessWidget {
           CustomButton(
             text: 'Guest',
             fontSize: 18.0,
-            onPressed: () async{},
+            onPressed: () async{
+              await context.push('/root');
+            },
             color: AppColor.primaryColor,
             width: 102.0,
           ),

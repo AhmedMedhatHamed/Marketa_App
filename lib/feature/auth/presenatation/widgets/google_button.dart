@@ -15,7 +15,7 @@ class GoogleButton extends StatelessWidget {
       fontSize: 18.0,
       width: 230.0,
       color: AppColor.offWhite,
-      onPressed: () async {},
+      onPressed: () {},
     );
   }
 }

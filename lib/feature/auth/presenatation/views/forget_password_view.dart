@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:marketa/core/utills/app_strings.dart';
 import 'package:marketa/core/utills/text_styles.dart';
+import 'package:marketa/feature/auth/presenatation/cubit/auth_cubit.dart';
 import 'package:marketa/feature/auth/presenatation/widgets/forget_pass_form.dart';
 import 'package:marketa/feature/auth/presenatation/widgets/forgot_password_image.dart';
 import 'package:marketa/feature/auth/presenatation/widgets/welcome_text.dart';
@@ -10,31 +12,32 @@ class ForgetPasswordView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: CustomScrollView(
-        slivers: [
-          SliverAppBar(
-            centerTitle: true,
-            title: Text(
-              AppStrings.forgetPassword,
-              style: CustomTextStyles.poppinsBoldStyles18Black,
+    return BlocProvider(
+      create: (context) => AuthCubit(),
+      child: Scaffold(
+        body: CustomScrollView(
+          slivers: [
+            SliverAppBar(
+              centerTitle: true,
+              title: Text(
+                AppStrings.forgetPassword,
+                style: CustomTextStyles.poppinsBoldStyles18Black,
+              ),
             ),
-          ),
-          SliverToBoxAdapter(child: SizedBox(height: 50.0)),
-          SliverToBoxAdapter(child: ForgotImageWidget()),
-          SliverToBoxAdapter(child: SizedBox(height: 20.0)),
-          SliverToBoxAdapter(
-            child: WelcomeText(
-              text1: AppStrings.forgetPassword,
-              text2:
-                  'Please enter the email address you would like your password reset information sent to',
+            SliverToBoxAdapter(child: SizedBox(height: 50.0)),
+            SliverToBoxAdapter(child: ForgotImageWidget()),
+            SliverToBoxAdapter(child: SizedBox(height: 20.0)),
+            SliverToBoxAdapter(
+              child: WelcomeText(
+                text1: AppStrings.forgetPassword,
+                text2:
+                'Please enter the email address you would like your password reset information sent to',
+              ),
             ),
-          ),
-          SliverToBoxAdapter(child:CustomForgetPasswordForm()),
-        ],
+            SliverToBoxAdapter(child: CustomForgetPasswordForm()),
+          ],
+        ),
       ),
     );
   }
 }
-
-
