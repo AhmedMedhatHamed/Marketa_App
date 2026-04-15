@@ -14,6 +14,8 @@ class UserCubit extends Cubit<UserState> {
   UserModel? get getUserModel => userModel;
 
   Future<void> displayUserInfo() async {
+    if (userModel != null) return;
+
     emit(UserLoading());
 
     final user = FirebaseAuth.instance.currentUser;
@@ -48,9 +50,8 @@ class UserCubit extends Cubit<UserState> {
       );
 
       emit(UserLoaded(userModel!));
-    } on FirebaseException catch (e) {
-      emit(UserError(e.message ?? "Firebase error occurred"));
     } catch (e) {
       emit(UserError(e.toString()));
     }
-  }}
+  }
+}
